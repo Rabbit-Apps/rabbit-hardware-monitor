@@ -2,6 +2,12 @@
 
 A compact Windows hardware dashboard by Rabbit Apps, using LibreHardwareMonitor and optional Intel PresentMon FPS capture.
 
+## Why I built it
+
+Tools like LibreHardwareMonitor and HWMonitor are fantastic for detailed hardware monitoring and gathering sensor data. I created Rabbit Hardware Monitor to make the readings that matter while gaming easy to see at a glance, with a compact, stylish interface that I hope gamers and hardware enthusiasts will enjoy.
+
+The inspiration came after I switched to an NVIDIA GPU and couldn't find a replacement that gave me the same monitoring dashboard experience I enjoyed in AMD Adrenalin. Rabbit is my take on that experience: the key readings, clearly presented and easy to keep an eye on while gaming.
+
 ## Run
 Download the Windows x64 portable ZIP from [Releases](https://github.com/Rabbit-Apps/rabbit-hardware-monitor/releases).
 
