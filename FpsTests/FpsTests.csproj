@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0-windows</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><UseWPF>true</UseWPF></PropertyGroup>
-  <ItemGroup><Compile Include="../App/FpsTracker.cs" Link="FpsTracker.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../App/FpsTracker.cs" Link="FpsTracker.cs" /><Compile Include="../App/FpsStatistics.cs" Link="FpsStatistics.cs" /></ItemGroup>
   <ItemGroup>
     <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.6-hotspot.7faa1af.anon1" />
     <Compile Include="../App/GpuDiscovery.cs" Link="GpuDiscovery.cs" />

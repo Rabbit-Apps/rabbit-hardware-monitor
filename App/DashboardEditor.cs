@@ -78,6 +78,13 @@ public sealed partial class MainPage
     {
         var showFps = new CheckBox { Content = "Show FPS section", IsChecked = fpsSettings.Show };
         var detectFps = new ToggleSwitch { Header = "FPS detection", IsOn = fpsSettings.Enabled };
+        var liveFps = new ToggleSwitch { Header = "Live FPS", IsOn = fpsSettings.ShowLive };
+        var averageFps = new ToggleSwitch { Header = "Average FPS", IsOn = fpsSettings.ShowAverage };
+        var lowFps = new ToggleSwitch { Header = "1% low FPS", IsOn = fpsSettings.ShowLow };
+        int[] resetSeconds = [0, 30, 60, 300, 600];
+        var resetTimer = new ComboBox { Header = "Reset statistics every", ItemsSource = new[] { "Off (manual reset)", "30 seconds", "1 minute", "5 minutes", "10 minutes" }, SelectedIndex = Math.Max(0, Array.IndexOf(resetSeconds, fpsSettings.ResetSeconds)), HorizontalAlignment = HorizontalAlignment.Stretch };
+        var resetNow = new Button { Content = "Reset statistics now" };
+        resetNow.Click += (_, _) => { fpsMonitor?.ResetStatistics(); resetNow.Content = "Statistics reset"; };
         // Populate choices without starting PresentMon when detection is disabled.
         var windowedApps = await Task.Run(() =>
         {
@@ -103,6 +110,12 @@ public sealed partial class MainPage
         fpsControls.Children.Add(showFps);
         fpsControls.Children.Add(detectFps);
         fpsControls.Children.Add(gameChoice);
+        fpsControls.Children.Add(liveFps);
+        fpsControls.Children.Add(averageFps);
+        fpsControls.Children.Add(lowFps);
+        fpsControls.Children.Add(resetTimer);
+        fpsControls.Children.Add(resetNow);
+        fpsControls.Children.Add(Text("Reset now applies immediately. Statistics restart when the game or render stream changes.", 12, "#A7AFBD"));
         fpsControls.Children.Add(Text("Detection runs independently of section visibility. Changes apply when you save.", 12, "#A7AFBD"));
         var draft = arrangement.ToList();
         var sourceChoices = new Dictionary<string, ComboBox>();
@@ -186,7 +199,8 @@ public sealed partial class MainPage
         var dialog = new ContentDialog { Title = "Edit dashboard", Content = new ScrollViewer { Content = content, MaxHeight = 480 }, PrimaryButtonText = "Save", CloseButtonText = "Cancel", XamlRoot = XamlRoot, RequestedTheme = ElementTheme.Dark };
         if (await dialog.ShowAsync() != ContentDialogResult.Primary)
             return;
-        var nextFps = new FpsSettings(detectFps.IsOn, gameChoice.SelectedIndex <= 0 ? null : gameChoice.SelectedItem as string, showFps.IsChecked == true);
+        var nextFps = new FpsSettings(detectFps.IsOn, gameChoice.SelectedIndex <= 0 ? null : gameChoice.SelectedItem as string, showFps.IsChecked == true,
+            liveFps.IsOn, averageFps.IsOn, lowFps.IsOn, resetSeconds[Math.Max(0, resetTimer.SelectedIndex)]);
         var nextVisibility = DashboardPreferences.MergeVisibility(visibility, initialVisibility, checks.ToDictionary(p => p.Key, p => p.Value.IsChecked == true));
         var nextThresholds = fields.Where(p => double.IsFinite(p.Value.Value)).ToDictionary(p => p.Key, p => Math.Round(p.Value.Value));
         var nextSources = sourceChoices.Where(p => p.Value.SelectedItem is SensorChoice c && c.Id.Length > 0).ToDictionary(p => p.Key, p => ((SensorChoice)p.Value.SelectedItem).Id);
@@ -204,10 +218,15 @@ public sealed partial class MainPage
         // Commit in-memory state only after the entire settings document is saved.
         settingsNotice = null;
         sensorOverrides = nextSources;
-        bool detectionChanged = fpsSettings.Enabled != nextFps.Enabled;
+        bool detectionChanged = fpsSettings.Enabled != nextFps.Enabled || fpsSettings.Application != nextFps.Application;
+        bool timerChanged = fpsSettings.ResetSeconds != nextFps.ResetSeconds;
         fpsSettings = nextFps;
         if (fpsMonitor != null)
+        {
             fpsMonitor.ManualApplication = fpsSettings.Application;
+            if (timerChanged) fpsMonitor.ConfigureStatistics(fpsSettings.ResetSeconds);
+        }
+        ApplyFpsVisibility();
         visibility.Clear();
         foreach (var pair in nextVisibility)
             visibility.Add(pair.Key, pair.Value);

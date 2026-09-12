@@ -5,7 +5,9 @@ namespace HardwareMonitor;
 
 internal sealed class FpsMonitor
 {
-    internal record Snapshot(string Message, double? Fps, string[] Applications);
+    internal record Snapshot(string Message, double? Fps, string[] Applications, double? Average = null, double? Low = null);
+    public void ResetStatistics() { lock (gate) tracker.ResetStatistics(clock.Elapsed.TotalSeconds); }
+    public void ConfigureStatistics(int seconds) { lock (gate) { tracker.ResetSeconds = seconds; tracker.ResetStatistics(clock.Elapsed.TotalSeconds); } }
     public event Action<Snapshot>? Updated;
     volatile string? manualApplication;
     public string? ManualApplication
@@ -121,11 +123,13 @@ internal sealed class FpsMonitor
 
                 FpsTracker.Candidate[] candidates;
                 int? selected;
+                (double? Average, double? Low) statistics;
                 lock (gate)
                 {
                     double now = clock.Elapsed.TotalSeconds;
                     candidates = tracker.Candidates(now);
                     selected = tracker.Select(now, candidates, foreground, alive, ManualApplication);
+                    statistics = tracker.Statistics(now, candidates.FirstOrDefault(c => c.Pid == selected), selected);
                 }
                 if (diagnosticsEnabled)
                     Log(System.Text.Json.JsonSerializer.Serialize(new
@@ -144,7 +148,7 @@ internal sealed class FpsMonitor
                     : lastName != null ? Path.GetFileNameWithoutExtension(lastName) + " · waiting for frames"
                     : ManualApplication != null ? Path.GetFileNameWithoutExtension(ManualApplication) + " · waiting for frames"
                     : "No game detected";
-                Publish(message, current?.Fps, candidates.Select(c => c.Name).Distinct(StringComparer.OrdinalIgnoreCase).Order().ToArray());
+                Updated?.Invoke(new(message, current?.Fps, candidates.Select(c => c.Name).Distinct(StringComparer.OrdinalIgnoreCase).Order().ToArray(), statistics.Average, statistics.Low));
                 await FpsStreamReader.WaitForUpdate(frames, exited, stop.Token).ConfigureAwait(false);
             }
             if (!stop.IsCancellationRequested)

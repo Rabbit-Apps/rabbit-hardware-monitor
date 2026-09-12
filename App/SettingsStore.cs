@@ -60,7 +60,8 @@ internal static class SettingsStore
     }
 }
 
-internal sealed record FpsSettings(bool Enabled = true, string? Application = null, bool Show = true);
+internal sealed record FpsSettings(bool Enabled = true, string? Application = null, bool Show = true,
+    bool ShowLive = true, bool ShowAverage = true, bool ShowLow = true, int ResetSeconds = 0);
 internal sealed record ReadingPlacement(string Title, int Column);
 
 internal sealed record DashboardPreferences

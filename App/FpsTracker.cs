@@ -7,7 +7,21 @@ namespace HardwareMonitor;
 internal sealed class FpsTracker
 {
     internal record WindowInfo(int Pid, bool Fullscreen);
-    internal record Candidate(int Pid, string Name, double Fps, double LastSeen, bool Exclusive, bool GpuActive);
+    internal record Candidate(int Pid, string Name, double Fps, double LastSeen, bool Exclusive, bool GpuActive, string Chain = "");
+    readonly FpsStatistics statistics = new();
+    (int Pid, string Chain)? statisticsStream;
+    double resetAt;
+    public int ResetSeconds { get; set; }
+    public void ResetStatistics(double now) { statistics.Reset(); resetAt = now; }
+    public (double? Average, double? Low) Statistics(double now, Candidate? current, int? process)
+    {
+        if (process == null || (statisticsStream.HasValue && statisticsStream.Value.Pid != process))
+        { statisticsStream = null; ResetStatistics(now); }
+        if (current != null && statisticsStream != (current.Pid, current.Chain))
+        { statisticsStream = (current.Pid, current.Chain); ResetStatistics(now); }
+        if (ResetSeconds > 0 && now - resetAt >= ResetSeconds) ResetStatistics(now);
+        return current == null ? (null, null) : statistics.Read();
+    }
     sealed class Stream
     {
         public required string Name;
@@ -93,6 +107,11 @@ internal sealed class FpsTracker
         if (!double.TryParse(Get("MsBetweenPresents"), NumberStyles.Float, CultureInfo.InvariantCulture, out double ms) || !double.IsFinite(ms) || ms <= 0)
             return;
         var key = (pid, Get("SwapChainAddress"));
+        if (statisticsStream == key)
+        {
+            if (ResetSeconds > 0 && now - resetAt >= ResetSeconds) ResetStatistics(now);
+            statistics.Add(ms);
+        }
         if (!streams.TryGetValue(key, out var stream))
         {
             if (streams.Count >= 512)
@@ -120,14 +139,16 @@ internal sealed class FpsTracker
             streams.Remove(key);
         // Multiple swap chains must never be added together: use the most active recent chain.
         return streams.Where(p => now - p.Value.LastSeen < 2 && p.Value.Intervals.Count >= 5 && p.Value.Sum > 0)
-            .Select(p => new Candidate(p.Key.Pid, p.Value.Name, 1000 * p.Value.Intervals.Count / p.Value.Sum, p.Value.LastSeen, p.Value.Exclusive, p.Value.GpuActive))
+            .Select(p => new Candidate(p.Key.Pid, p.Value.Name, 1000 * p.Value.Intervals.Count / p.Value.Sum, p.Value.LastSeen, p.Value.Exclusive, p.Value.GpuActive, p.Key.Chain))
             .GroupBy(p => p.Pid).Select(g => g.OrderByDescending(p => p.Fps).First()).ToArray();
     }
     public int? Select(double now, Candidate[] candidates, WindowInfo foreground, HashSet<int> alive, string? manual)
     {
         if (manual != null)
         {
-            selected = candidates.Where(c => c.Name.Equals(manual, StringComparison.OrdinalIgnoreCase)).OrderByDescending(c => c.Pid == foreground.Pid).Select(c => (int?)c.Pid).FirstOrDefault();
+            var match = candidates.Where(c => c.Name.Equals(manual, StringComparison.OrdinalIgnoreCase)).OrderByDescending(c => c.Pid == foreground.Pid).Select(c => (int?)c.Pid).FirstOrDefault();
+            selected = match ?? (selected.HasValue && alive.Contains(selected.Value)
+                && streams.Any(p => p.Key.Pid == selected && p.Value.Name.Equals(manual, StringComparison.OrdinalIgnoreCase)) ? selected : null);
             pending = null;
             return selected;
         }

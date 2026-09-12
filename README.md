@@ -27,6 +27,14 @@ Edit dashboard controls visibility, sensor mapping, order, warnings and FPS dete
 
 Diagnostics generates local reports that can include hardware identifiers and system information. Inspect reports before sharing. No diagnostic captures are included here.
 
+### FPS statistics
+
+Dashboard settings have independent switches for live FPS, average FPS and 1% low FPS. FPS detection controls the PresentMon helper; the display switches only control which figures are visible. Statistics can reset manually or every 30 seconds, 1 minute, 5 minutes or 10 minutes. Reset now takes effect immediately; other settings apply when saved.
+
+Live FPS uses the existing approximately one-second window. Average FPS is frame count divided by total frame duration since reset. The 1% low is the reciprocal of the mean duration of the slowest 1% of captured frame intervals (rounded up to a whole frame). These are application present timings, not displayed-frame timings, and may differ from other tools' definitions. Statistics start collecting after game selection and appear after at least 100 frames and two seconds of frame time.
+
+The statistics use a fixed-size histogram to avoid retaining a growing history or sorting frames continuously. Average FPS uses unrounded durations. The 1% low is approximate at the cutoff: intervals are grouped in 0.1 ms buckets, with intervals over one second grouped together. A partial cutoff bucket uses that bucket's mean. Long intervals are included, so pauses/loading can affect results; reset before a comparison run. A game/process or selected render-stream change resets statistics. Brief pauses retain the session but hide figures until frames resume.
+
 ## Licence and release status
 Rabbit's original code uses the Rabbit Apps Free Use and Sharing Licence in LICENSE.md. Free personal/business use and free sharing are allowed; selling requires permission. Dependencies retain their own licences, including MPL and LGPL; see Legal and Tools/PresentMon under App.
 

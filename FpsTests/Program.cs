@@ -16,6 +16,39 @@ internal static class Program
         }
         int assertions=0;
         void Check(bool condition,string message){if(!condition)throw new Exception(message);assertions++;}
+        var statistics = new FpsStatistics();
+        statistics.Add(double.NaN); statistics.Add(double.PositiveInfinity); statistics.Add(-1);
+        Check(statistics.Read().Average == null, "Invalid samples are ignored");
+        for (int i=0;i<99;i++) statistics.Add(20);
+        Check(statistics.Read().Low == null, "Statistics wait for 100 frames and two seconds");
+        statistics.Add(20);
+        Check(Math.Abs(statistics.Read().Average!.Value-50)<.001 && Math.Abs(statistics.Read().Low!.Value-50)<.001, "Steady 50 FPS statistics");
+        statistics.Reset();
+        Check(statistics.Read().Average == null, "Manual reset clears statistics");
+        for (int i=0;i<990;i++) statistics.Add(10);
+        for (int i=0;i<10;i++) statistics.Add(100);
+        Check(Math.Abs(statistics.Read().Average!.Value-1000000d/10900)<.001, "Average uses total frame duration");
+        Check(Math.Abs(statistics.Read().Low!.Value-10)<.001, "Slowest one percent uses frame durations");
+        statistics.Add(2000);
+        Check(statistics.Read().Low < 10, "Long stutters contribute to statistics");
+        var statsTracker = new FpsTracker();
+        statsTracker.Accept("Application,ProcessID,SwapChainAddress,MsBetweenPresents,PresentMode,msGPUActive",0);
+        var statsCandidate = new FpsTracker.Candidate(456,"test.exe",50,0,false,true,"A");
+        statsTracker.Statistics(0, statsCandidate,456);
+        for(int i=0;i<100;i++) statsTracker.Accept("test.exe,456,A,20,Composed: Flip,1",1);
+        for(int i=0;i<100;i++) statsTracker.Accept("test.exe,456,B,100,Composed: Flip,1",1);
+        Check(statsTracker.Statistics(1,statsCandidate,456).Average == 50, "Statistics ignore other swap chains");
+        Check(statsTracker.Statistics(2,null,456).Average == null, "Paused game hides stale figures");
+        Check(statsTracker.Statistics(3,statsCandidate,456).Average == 50, "Brief pause retains session statistics");
+        statsTracker.ResetSeconds=30;
+        Check(statsTracker.Statistics(30,statsCandidate,456).Average == null, "Automatic interval reset");
+        for(int i=0;i<100;i++) statsTracker.Accept("test.exe,456,A,20,Composed: Flip,1",31);
+        Check(statsTracker.Statistics(31,statsCandidate,456).Average == 50, "Collect again after timer reset");
+        Check(statsTracker.Statistics(32,statsCandidate with { Pid=457 },457).Average == null, "Changing process resets statistics");
+        var oldSettings = System.Text.Json.JsonSerializer.Deserialize<FpsSettings>("{\"Enabled\":true,\"Show\":true}")!;
+        Check(oldSettings.ShowLive && oldSettings.ShowAverage && oldSettings.ShowLow && oldSettings.ResetSeconds==0, "Old FPS settings retain defaults");
+        var choices = new FpsSettings(true,null,true,false,true,false,60);
+        Check(System.Text.Json.JsonSerializer.Deserialize<FpsSettings>(System.Text.Json.JsonSerializer.Serialize(choices))==choices, "FPS display and timer choices persist");
         if(args.Length==2&&args[0]=="--csv"){
             var replay=new FpsTracker();foreach(var line in System.IO.File.ReadLines(args[1]))replay.Accept(line,1);
             var actual=replay.Candidates(1);Check(actual.Any(c=>c.Name=="FpsTests.exe"&&c.Fps>0),"Parse actual helper output");
