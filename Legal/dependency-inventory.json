@@ -1,0 +1,423 @@
+[
+  {
+    "Package": "BlackSharp.Core/1.2.0",
+    "License": "MPL-2.0",
+    "LicenseType": "expression",
+    "Copyright": "Florian K.",
+    "Repository": "https://github.com/Blacktempel/BlackSharp",
+    "Commit": "e3383d014620777a561c939efe3f27ed4f72bc04",
+    "NoticeFiles": 0,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "DiskInfoToolkit/2.1.4",
+    "License": "MPL-2.0",
+    "LicenseType": "expression",
+    "Copyright": "Florian K.",
+    "Repository": "https://github.com/Blacktempel/DiskInfoToolkit",
+    "Commit": "a6ea726b6118d4469d1228e19b5db0f3437864dc",
+    "NoticeFiles": 0,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "HidSharp/2.6.4",
+    "License": "LICENSE.txt",
+    "LicenseType": "file",
+    "Copyright": "Copyright 2010-2025 James Bellinger",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "LibreHardwareMonitorLib/0.9.6-hotspot.7faa1af.anon1",
+    "License": "MPL-2.0",
+    "LicenseType": "expression",
+    "Copyright": "LibreHardwareMonitor",
+    "Repository": "https://github.com/LibreHardwareMonitor/LibreHardwareMonitor",
+    "Commit": "7faa1af1fb3c2c307186c60162035d42bf3b5a48",
+    "NoticeFiles": 0,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.Web.WebView2/1.0.3179.45",
+    "License": "LICENSE.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 2,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.Windows.SDK.BuildTools/10.0.26100.7705",
+    "License": "",
+    "LicenseType": "",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 0,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.Windows.SDK.BuildTools.MSIX/1.7.20250829.1",
+    "License": "sdk_license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "67f4227c6961a7cdc37615834c76d23caf5b58cc",
+    "NoticeFiles": 2,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.Windows.SDK.BuildTools.WinApp/0.3.1",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/microsoft/WinAppCli.git",
+    "Commit": "c8ada4a403c43b96780b87abc454cba51f649c60",
+    "NoticeFiles": 0,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK/1.8.260317003",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 2,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK.AI/1.8.53",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK.Base/1.8.251216001",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 2,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK.DWrite/1.8.25122902",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK.Foundation/1.8.260222000",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK.InteractiveExperiences/1.8.260125001",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK.ML/1.8.2141",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 2,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK.Runtime/1.8.260317003",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 2,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK.Widgets/1.8.251231004",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Microsoft.WindowsAppSDK.WinUI/1.8.260224000",
+    "License": "license.txt",
+    "LicenseType": "file",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 3,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "Mono.Posix.NETStandard/1.0.0",
+    "License": "",
+    "LicenseType": "",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "",
+    "Commit": "",
+    "NoticeFiles": 0,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "RAMSPDToolkit-NDD/1.6.1",
+    "License": "MPL-2.0",
+    "LicenseType": "expression",
+    "Copyright": "Florian K.",
+    "Repository": "https://github.com/Blacktempel/RAMSPDToolkit",
+    "Commit": "0ea51855144eef82787f983004fb8ce7346f8227",
+    "NoticeFiles": 0,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.android-arm.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.android-arm64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.android-x64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.android-x86.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.linux-arm.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.linux-arm64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.linux-bionic-arm64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.linux-bionic-x64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.linux-musl-arm.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.linux-musl-arm64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.linux-musl-x64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.linux-x64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.maccatalyst-arm64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.maccatalyst-x64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.osx-arm64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "runtime.osx-x64.runtime.native.System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "System.CodeDom/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "System.IO.FileSystem.AccessControl/5.0.0",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "git://github.com/dotnet/runtime",
+    "Commit": "cf258a14b70ad9069470a108f13765e0e5988f51",
+    "NoticeFiles": 2,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "System.IO.Ports/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "System.Management/10.0.11",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/dotnet",
+    "Commit": "e2f47b0110ed922f21a1522da67279133ce28f32",
+    "NoticeFiles": 1,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  },
+  {
+    "Package": "System.Numerics.Tensors/9.0.0",
+    "License": "MIT",
+    "LicenseType": "expression",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Repository": "https://github.com/dotnet/runtime",
+    "Commit": "9d5a6a9aa463d6d10b0b0ba6d5982cc82f363dc3",
+    "NoticeFiles": 2,
+    "Scope": "Resolved package; runtime inclusion requires publish-file mapping"
+  }
+]
+

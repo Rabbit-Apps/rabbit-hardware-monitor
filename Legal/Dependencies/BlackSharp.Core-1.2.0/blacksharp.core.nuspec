@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>BlackSharp.Core</id>
+    <version>1.2.0</version>
+    <authors>BlackSharp.Core</authors>
+    <license type="expression">MPL-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/MPL-2.0</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Blacktempel/BlackSharp</projectUrl>
+    <description>A framework to eliminate duplicate code across projects.</description>
+    <copyright>Florian K.</copyright>
+    <tags>framework code shared</tags>
+    <repository type="git" url="https://github.com/Blacktempel/BlackSharp" commit="e3383d014620777a561c939efe3f27ed4f72bc04" />
+    <dependencies>
+      <group targetFramework="net10.0" />
+      <group targetFramework=".NETFramework4.7.2" />
+      <group targetFramework=".NETFramework4.8.1" />
+      <group targetFramework="net8.0" />
+      <group targetFramework="net9.0" />
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+</package>

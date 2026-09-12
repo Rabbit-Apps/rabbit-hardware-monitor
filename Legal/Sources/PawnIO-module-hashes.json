@@ -1,0 +1,72 @@
+[
+  {
+    "Module": "AMDFamily0F.bin",
+    "SHA256": "A6E11619E87A97820705A6523714F22D676CE44F902631833D4429B89D509D55",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "AMDFamily10.bin",
+    "SHA256": "6443080B2968474FFBC38AA4356CC56F9664349FA4B917AFDB33027D6BB50525",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "AMDFamily17.bin",
+    "SHA256": "DAE74615761B78BDF064DFB3E136252DDCC6FC727D88F14738D0E5800D427A91",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "IntelMSR.bin",
+    "SHA256": "D6ED85D65AB17A22F813EF98207D6D537155EE2DED5976A21CB48413C9B92E5F",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "IsaBridgeEC.bin",
+    "SHA256": "2C5EC9D09BA42C980C917F83F528E9643CEEE386C84FFA8765C521CD1BBBA304",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "LpcACPIEC.bin",
+    "SHA256": "C38FD116E7AFF4D1FDB0A494E296BE0A6708E5A22FC72F14587442FB7F8F7906",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "LpcCrOSEC.bin",
+    "SHA256": "1CA4B495EA09DC05278E8627BDA993E20E8D66A9F90E866283F0007EF0D57E28",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "LpcIO.bin",
+    "SHA256": "B3896A1CAB0D808FCA31FE2EBCAE045D59DAC690DA87B17C858BB8DA357EB45E",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "Nvidia.bin",
+    "SHA256": "2A51262B7215BF3EA82C0F507BC4AF50243141F82542DFE611A885C71CE2629A",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "RyzenSMU.bin",
+    "SHA256": "301D9CA397108E09F31BFBD5AC4C9BB4F352A5DE68532C32DB3BA7DDCDE93450",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "SmbusI801.bin",
+    "SHA256": "A0F7D066E7EFDA28C0E754C1F52DBD8DC280D388BA8575B514A80CB67490530C",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "SmbusIntelSkylakeIMC.bin",
+    "SHA256": "2E2D6C1E541FDFE598AA8DF4D334E11C491C8A84F23E8256DD18119DD420DBD2",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "SmbusNCT6793.bin",
+    "SHA256": "DB068C6A87C0066EBFB7F691D88422FEE8AF350898E7A7F0DB100FD6632BAB17",
+    "MatchesOfficial": true
+  },
+  {
+    "Module": "SmbusPIIX4.bin",
+    "SHA256": "91F9B4B1C39E3D399CE48477A89D8F6BD3E58A2241064A4DAEC3A1513DFF56E5",
+    "MatchesOfficial": true
+  }
+]

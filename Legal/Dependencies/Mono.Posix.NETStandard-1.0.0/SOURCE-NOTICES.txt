@@ -1,0 +1,3329 @@
+Mono.Posix.NETStandard 1.0.0 — upstream source notices
+
+Source: https://github.com/mono/mono/tree/mono-5.8.0.127
+These original leading source comments preserve attribution and licence terms. Native support notices are included conservatively across platform/build options; inclusion does not mean every source file was compiled into the Windows binaries. See PROVENANCE.md.
+
+
+========== mcs/build/common/Locale.cs ==========
+//
+// Locale.cs
+//
+// Author:
+//   Miguel de Icaza (miguel@ximian.com)
+//   Andreas Nahr (ClassDevelopment@A-SoftTech.com)
+//
+// (C) 2001 - 2003 Ximian, Inc (http://www.ximian.com)
+//
+
+//
+// Copyright (C) 2004 Novell, Inc (http://www.novell.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Assembly/AssemblyInfo.cs ==========
+//
+// AssemblyInfo.cs
+//
+// Author:
+//   Andreas Nahr (ClassDevelopment@A-SoftTech.com)
+//
+// (C) 2003 Ximian, Inc.  http://www.ximian.com
+// (C) 2004 Novell (http://www.novell.com)
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Posix/Catalog.cs ==========
+//
+// Mono.Posix.Catalog.cs: Wrappers for the libintl library.
+//
+// Author:
+//   Edd Dumbill (edd@usefulinc.com)
+//
+// (C) 2004 Edd Dumbill
+//
+// This file implements the low-level syscall interface to the POSIX
+// subsystem.
+//
+// This file tries to stay close to the low-level API as much as possible
+// using enumerations, structures and in a few cases, using existing .NET
+// data types.
+//
+// Implementation notes:
+//
+//    Since the values for the various constants on the API changes
+//    from system to system (even Linux on different architectures will
+//    have different values), we define our own set of values, and we
+//    use a set of C helper routines to map from the constants we define
+//    to the values of the native OS.
+//
+//    Bitfields are flagged with the [Map] attribute, and a helper program
+//    generates a set of map_XXXX routines that we can call to convert
+//    from our value definitions to the value definitions expected by the
+//    OS.
+//
+//    Methods that require tuning are bound as `internal syscal_NAME' methods
+//    and then a `NAME' method is exposed.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Posix/PeerCred.cs ==========
+//
+// Mono.Posix.PeerCred: Peer credentials class for AF_UNIX sockets
+//
+// Authors:
+//	Dick Porter (dick@ximian.com)
+//
+// (C) 2004 Novell, Inc (http://www.novell.com)
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Posix/Syscall.cs ==========
+//
+// Mono.Posix.Syscall.cs: System calls to Posix subsystem features
+//
+// Author:
+//   Miguel de Icaza (miguel@novell.com)
+//
+// (C) 2003 Novell, Inc.
+//
+// This file implements the low-level syscall interface to the POSIX
+// subsystem.
+//
+// This file tries to stay close to the low-level API as much as possible
+// using enumerations, structures and in a few cases, using existing .NET
+// data types.
+//
+// Implementation notes:
+//
+//    Since the values for the various constants on the API changes
+//    from system to system (even Linux on different architectures will
+//    have different values), we define our own set of values, and we
+//    use a set of C helper routines to map from the constants we define
+//    to the values of the native OS.
+//
+//    Bitfields were flagged with the [Map] attribute, and a helper program
+//    generates a set of map_XXXX routines that we can call to convert
+//    from our value definitions to the value definitions expected by the
+//    OS.
+//
+//    Methods that require tuning are bound as `internal syscal_NAME' methods
+//    and then a `NAME' method is exposed.
+//
+// Deprecated Warning:
+//
+//    This class is deprecated, and exists only for backward compatibility.
+//    Please use and maintain Mono.Unix.Native.Syscall.
+//
+//    The [Map] attributes have been removed.  The naming and methodology of
+//    the mapping routines has changed.  The old map functions still exist in
+//    MonoPosixHelper, but they will not be updated any further.
+//    Consequently, there is little point in maintaining the [Map] attributes
+//    in this file, as they would only bloat MonoPosixHelper.
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Posix/UnixEndPoint.cs ==========
+//
+// Mono.Posix.UnixEndPoint: EndPoint derived class for AF_UNIX family sockets.
+//
+// Authors:
+//	Gonzalo Paniagua Javier (gonzalo@ximian.com)
+//
+// (C) 2003 Ximian, Inc (http://www.ximian.com)
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix.Native/FileNameMarshaler.cs ==========
+//
+// Mono.Unix/FileNameMarshaler.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2005 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix.Native/MapAttribute.cs ==========
+//
+// MapAttribute.cs
+//
+// Author:
+//   Miguel de Icaza (miguel@gnome.org)
+//
+// (C) Novell, Inc.  
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix.Native/RealTimeSignum.cs ==========
+//
+// Authors:
+//   Tim Jenks (tim.jenks@realtimeworlds.com)
+//
+// (C) 2008 Realtime Worlds Ltd
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+//
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix.Native/Stdlib.cs ==========
+//
+// Mono.Unix/Stdlib.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix.Native/Syscall.cs ==========
+//
+// Mono.Unix/Syscall.cs
+//
+// Authors:
+//   Miguel de Icaza (miguel@novell.com)
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2003 Novell, Inc.
+// (C) 2004-2006 Jonathan Pryor
+//
+// This file implements the low-level syscall interface to the POSIX
+// subsystem.
+//
+// This file tries to stay close to the low-level API as much as possible
+// using enumerations, structures and in a few cases, using existing .NET
+// data types.
+//
+// Implementation notes:
+//
+//    Since the values for the various constants on the API changes
+//    from system to system (even Linux on different architectures will
+//    have different values), we define our own set of values, and we
+//    use a set of C helper routines to map from the constants we define
+//    to the values of the native OS.
+//
+//    Bitfields are flagged with the [Map] attribute, and a helper program
+//    generates a set of routines that we can call to convert from our value 
+//    definitions to the value definitions expected by the OS; see
+//    NativeConvert for the conversion routines.
+//
+//    Methods that require tuning are bound as `private sys_NAME' methods
+//    and then a `NAME' method is exposed.
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix.Native/TypeAttributes.cs ==========
+//
+// TypeAttributes.cs
+//
+// Author:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2006 Jonathan Pryor
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/AbstractUnixEndPoint.cs ==========
+//
+// Mono.Unix.AbstractUnixEndPoint: EndPoint derived class for AF_UNIX family sockets.
+//
+// Authors:
+//	Gonzalo Paniagua Javier (gonzalo@ximian.com)
+//	Alp Toker  (alp@atoker.com)
+//
+// (C) 2003 Ximian, Inc (http://www.ximian.com)
+// (C) 2006 Alp Toker
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/Catalog.cs ==========
+//
+// Mono.Unix.Catalog.cs: Wrappers for the libintl library.
+//
+// Authors:
+//   Edd Dumbill (edd@usefulinc.com)
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004 Edd Dumbill
+// (C) 2005-2006 Jonathan Pryor
+//
+// This file implements the low-level syscall interface to the POSIX
+// subsystem.
+//
+// This file tries to stay close to the low-level API as much as possible
+// using enumerations, structures and in a few cases, using existing .NET
+// data types.
+//
+// Implementation notes:
+//
+//    Since the values for the various constants on the API changes
+//    from system to system (even Linux on different architectures will
+//    have different values), we define our own set of values, and we
+//    use a set of C helper routines to map from the constants we define
+//    to the values of the native OS.
+//
+//    Bitfields are flagged with the [Map] attribute, and a helper program
+//    generates a set of map_XXXX routines that we can call to convert
+//    from our value definitions to the value definitions expected by the
+//    OS.
+//
+//    Methods that require tuning are bound as `internal syscal_NAME' methods
+//    and then a `NAME' method is exposed.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/FileAccessPattern.cs ==========
+//
+// Mono.Unix/FileAccessPattern.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2005 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/FileAccessPermissions.cs ==========
+//
+// Mono.Unix/FileAccessPermissions.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2005-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/FileHandleOperations.cs ==========
+//
+// Mono.Unix/FileHandleOperations.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2005 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/FileSpecialAttributes.cs ==========
+//
+// Mono.Unix/FileSpecialAttributes.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2005-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/FileTypes.cs ==========
+//
+// Mono.Unix/FileTypes.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2005-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/PeerCred.cs ==========
+//
+// Mono.Unix.PeerCred: Peer credentials class for AF_UNIX sockets
+//
+// Authors:
+//	Dick Porter (dick@ximian.com)
+//
+// (C) 2004 Novell, Inc (http://www.novell.com)
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/StdioFileStream.cs ==========
+//
+// Mono.Unix/StdioFileStream.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2005-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixClient.cs ==========
+//
+// UnixClient.cs
+//
+// Authors:
+//	Joe Shaw (joeshaw@novell.com)
+//
+// Copyright (C) 2004-2005 Novell, Inc.
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixDirectoryInfo.cs ==========
+//
+// Mono.Unix/UnixDirectoryInfo.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixDriveInfo.cs ==========
+//
+// Mono.Unix/UnixDriveInfo.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixEncoding.cs ==========
+/*
+ * Mono.Unix/UnixEncoding.cs
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (c) 2001, 2002  Southern Storm Software, Pty Ltd
+ * Copyright (C) 2004 Novell, Inc (http://www.novell.com)
+ * Copyright (C) 2005 Jonathan Pryor
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixEndPoint.cs ==========
+//
+// Mono.Unix.UnixEndPoint: EndPoint derived class for AF_UNIX family sockets.
+//
+// Authors:
+//	Gonzalo Paniagua Javier (gonzalo@ximian.com)
+//
+// (C) 2003 Ximian, Inc (http://www.ximian.com)
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixEnvironment.cs ==========
+//
+// Mono.Unix/UnixEnvironment.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixFileInfo.cs ==========
+//
+// Mono.Unix/UnixFileInfo.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixFileSystemInfo.cs ==========
+//
+// Mono.Unix/UnixFileSystemInfo.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixGroupInfo.cs ==========
+//
+// Mono.Unix/UnixGroupInfo.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2005 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixIOException.cs ==========
+//
+// Mono.Unix/UnixIOException.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2005 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixListener.cs ==========
+//
+// UnixListener.cs
+//
+// Authors:
+//	Joe Shaw (joeshaw@novell.com)
+//
+// Copyright (C) 2004-2005 Novell, Inc.
+//
+
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixMarshal.cs ==========
+//
+// Mono.Unix/UnixMarshal.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixPath.cs ==========
+//
+// Mono.Unix/UnixPath.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixPipes.cs ==========
+//
+// Mono.Unix/UnixPipes.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2005 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixProcess.cs ==========
+//
+// Mono.Unix/UnixProcess.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2005 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixSignal.cs ==========
+//
+// Mono.Unix/UnixSignal.cs
+//
+// Authors:
+//   Jonathan Pryor (jpryor@novell.com)
+//   Tim Jenks (tim.jenks@realtimeworlds.com)
+//
+// (C) 2008 Novell, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixStream.cs ==========
+//
+// Mono.Unix/UnixStream.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2006 Jonathan Pryor
+// (C) 2007 Novell, Inc.
+//
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixSymbolicLinkInfo.cs ==========
+//
+// Mono.Unix/UnixSymbolicLinkInfo.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2006 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mcs/class/Mono.Posix/Mono.Unix/UnixUserInfo.cs ==========
+//
+// Mono.Unix/UnixUserInfo.cs
+//
+// Authors:
+//   Jonathan Pryor (jonpryor@vt.edu)
+//
+// (C) 2004-2005 Jonathan Pryor
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+// 
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+
+========== mono/eglib/garray.c ==========
+/*
+ * Arrays
+ *
+ * Author:
+ *   Chris Toshok (toshok@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gbytearray.c ==========
+/*
+ * Arrays
+ *
+ * Author:
+ *   Geoff Norton  (gnorton@novell.com)
+ *
+ * (C) 2010 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gdate-unix.c ==========
+/*
+ * gdate-unix.c: Date and time utility functions.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gdate-win32.c ==========
+/*
+ * gdate-win32.c: Date and time utility functions.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gdir-unix.c ==========
+/*
+ * Directory utility functions.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gdir-win32.c ==========
+/*
+ * Directory utility functions.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gerror.c ==========
+/*
+ * gerror.c: Error support.
+ *
+ * Author:
+ *   Miguel de Icaza (miguel@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gfile-posix.c ==========
+/*
+ * File utility functions.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gfile-unix.c ==========
+/*
+ * File utility functions.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gfile-win32.c ==========
+/*
+ * File utility functions.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gfile.c ==========
+/*
+ * File utility functions.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/ghashtable.c ==========
+/*
+ * ghashtable.c: Hashtable implementation
+ *
+ * Author:
+ *   Miguel de Icaza (miguel@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/giconv.c ==========
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
+/*
+ *  Copyright (C) 2011 Jeffrey Stedfast
+ *
+ *  Permission is hereby granted, free of charge, to any person
+ *  obtaining a copy of this software and associated documentation
+ *  files (the "Software"), to deal in the Software without
+ *  restriction, including without limitation the rights to use, copy,
+ *  modify, merge, publish, distribute, sublicense, and/or sell copies
+ *  of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be
+ *  included in all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ *  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ *  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ *  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ *  HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ *  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ *  DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/glist.c ==========
+/*
+ * glist.c: Doubly-linked list implementation
+ *
+ * Authors:
+ *   Duncan Mak (duncan@novell.com)
+ *   Raja R Harinath (rharinath@novell.com)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * (C) 2006 Novell, Inc.
+ */
+
+
+========== mono/eglib/gmarkup.c ==========
+/*
+ * gmakrup.c: Minimal XML markup reader.
+ *
+ * Unlike the GLib one, this can not be restarted with more text
+ * as the Mono use does not require it.
+ *
+ * Actually, with further thought, I think that this could be made
+ * to restart very easily.  The pos == end condition would mean
+ * "return to caller" and only at end parse this would be a fatal
+ * error.
+ *
+ * Not that it matters to Mono, but it is very simple to change, there
+ * is a tricky situation: there are a few places where we check p+n
+ * in the source, and that would have to change to be progressive, instead
+ * of depending on the string to be complete at that point, so we would
+ * have to introduce extra states to cope with that.
+ *
+ * Author:
+ *   Miguel de Icaza (miguel@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gmem.c ==========
+/*
+ * gmem.c: memory utility functions
+ *
+ * Author:
+ * 	Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gmisc-unix.c ==========
+/*
+ * gmisc.c: Misc functions with no place to go (right now)
+ *
+ * Author:
+ *   Aaron Bockover (abockover@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gmisc-win32-uwp.c ==========
+/*
+ * gmisc-win32-uwp.c: UWP misc support.
+ *
+ * Copyright 2016 Microsoft
+ * Licensed under the MIT license. See LICENSE file in the project root for full license information.
+*/
+
+
+========== mono/eglib/gmisc-win32.c ==========
+/*
+ * gmisc.c: Misc functions with no place to go (right now)
+ *
+ * Author:
+ *   Aaron Bockover (abockover@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gmodule-unix.c ==========
+/*
+ * gmodule.c: dl* functions, glib style
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *   Jonathan Chambers (joncham@gmail.com)
+ *   Robert Jordan (robertj@gmx.net)
+ *
+ * (C) 2006 Novell, Inc.
+ * (C) 2006 Jonathan Chambers
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gmodule-win32-uwp.c ==========
+/*
+ * gmodule-win32-uwp.c: UWP gmodule support.
+ *
+ * Copyright 2016 Microsoft
+ * Licensed under the MIT license. See LICENSE file in the project root for full license information.
+*/
+
+
+========== mono/eglib/gmodule-win32.c ==========
+/*
+ * gmodule.c: dl* functions, glib style
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *   Jonathan Chambers (joncham@gmail.com)
+ *   Robert Jordan (robertj@gmx.net)
+ *
+ * (C) 2006 Novell, Inc.
+ * (C) 2006 Jonathan Chambers
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/goutput.c ==========
+/*
+ * Output and debugging functions
+ *
+ * Author:
+ *   Miguel de Icaza (miguel@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ * Copyright 2011 Xamarin Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gpath.c ==========
+/*
+ * Portable Utility Functions
+ *
+ * Author:
+ *   Miguel de Icaza (miguel@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gpattern.c ==========
+/*
+ * Simple pattern matching
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gptrarray.c ==========
+/*
+ * Pointer Array
+ *
+ * Author:
+ *   Aaron Bockover (abockover@novell.com)
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *   Jeffrey Stedfast (fejj@novell.com)
+ *
+ * (C) 2006,2011 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gqsort.c ==========
+/*
+ * QuickSort
+ *
+ * Author: Jeffrey Stedfast <fejj@novell.com>
+ *
+ * (C) 2011 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gqueue.c ==========
+/*
+ * gqueue.c: Queue
+ *
+ * Author:
+ *   Duncan Mak (duncan@novell.com)
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * Copyright (c) 2006-2009 Novell, Inc.
+ *
+ */
+
+
+========== mono/eglib/gshell.c ==========
+/*
+ * Shell utility functions.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gslist.c ==========
+/*
+ * gslist.c: Singly-linked list implementation
+ *
+ * Authors:
+ *   Duncan Mak (duncan@novell.com)
+ *   Raja R Harinath (rharinath@novell.com)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * (C) 2006 Novell, Inc.
+ */
+
+
+========== mono/eglib/gspawn.c ==========
+/*
+ * Spawning processes.
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gstr.c ==========
+/*
+ * gstr.c: String Utility Functions.
+ *
+ * Author:
+ *   Miguel de Icaza (miguel@novell.com)
+ *   Aaron Bockover (abockover@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gstring.c ==========
+/*
+ * String functions
+ *
+ * Author:
+ *   Miguel de Icaza (miguel@novell.com)
+ *   Aaron Bockover (abockover@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gtimer-unix.c ==========
+/*
+ * Timer
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gtimer-win32.c ==========
+/*
+ * Timer
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+========== mono/eglib/gunicode-win32-uwp.c ==========
+/*
+ * gunicode-win32-uwp.c: UWP unicode support.
+ *
+ * Copyright 2016 Microsoft
+ * Licensed under the MIT license. See LICENSE file in the project root for full license information.
+*/
+
+
+========== mono/eglib/gunicode-win32.c ==========
+/*
+ * gunicode-win32.c: Windows unicode support.
+ *
+ * Copyright 2016 Microsoft
+ * Licensed under the MIT license. See LICENSE file in the project root for full license information.
+*/
+
+
+========== mono/eglib/gunicode.c ==========
+/*
+ * gunicode.c: Some Unicode routines 
+ *
+ * Author:
+ *   Miguel de Icaza (miguel@novell.com)
+ *
+ * (C) 2006 Novell, Inc.
+ *
+ * utf8 validation code came from:
+ * 	libxml2-2.6.26 licensed under the MIT X11 license
+ *
+ * Authors credit in libxml's string.c:
+ *   William Brack <wbrack@mmm.com.hk>
+ *   daniel@veillard.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+
+
+========== mono/eglib/gutf8.c ==========
+/*
+ * gutf8.c: UTF-8 conversion
+ *
+ * Author:
+ *   Atsushi Enomoto  <atsushi@ximian.com>
+ *
+ * (C) 2006 Novell, Inc.
+ * Copyright 2012 Xamarin Inc
+ */
+
+
+========== mono/eglib/sort.frag.h ==========
+/*
+ * sort.frag.h: Common implementation of linked-list sorting
+ *
+ * Author:
+ *   Raja R Harinath (rharinath@novell.com)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * (C) 2006 Novell, Inc.
+ */
+
+/*
+ * This code requires a typedef named 'list_node' for the list node.  It
+ * is assumed that the list type is the type of a pointer to a list
+ * node, and that the node has a field named 'next' that implements to
+ * the linked list.  No additional invariant is maintained (e.g. the
+ * 'prev' pointer of a doubly-linked list node is _not_ updated).  Any
+ * invariant would require a post-processing pass to fix matters if
+ * necessary.
+ */
+
+
+========== support/adler32.c ==========
+/* adler32.c -- compute the Adler-32 checksum of a data stream
+ * Copyright (C) 1995-2007 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* @(#) $Id$ */
+
+
+========== support/compress.c ==========
+/* compress.c -- compress a memory buffer
+ * Copyright (C) 1995-2005 Jean-loup Gailly.
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* @(#) $Id$ */
+
+
+========== support/crc32.c ==========
+/* crc32.c -- compute the CRC-32 of a data stream
+ * Copyright (C) 1995-2006, 2010 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ *
+ * Thanks to Rodney Brown <rbrown64@csc.com.au> for his contribution of faster
+ * CRC methods: exclusive-oring 32 bits of data at a time, and pre-computing
+ * tables for updating the shift register in one step with three exclusive-ors
+ * instead of four steps with four exclusive-ors.  This results in about a
+ * factor of two increase in speed on a Power PC G4 (PPC7455) using gcc -O3.
+ */
+
+/* @(#) $Id$ */
+
+/*
+  Note on the use of DYNAMIC_CRC_TABLE: there is no mutex or semaphore
+  protection on the static variables used to control the first-use generation
+  of the crc tables.  Therefore, if you #define DYNAMIC_CRC_TABLE, you should
+  first call get_crc_table() to initialize the tables before allowing more than
+  one thread to use crc32().
+ */
+
+
+========== support/deflate.c ==========
+/* deflate.c -- compress data using the deflation algorithm
+ * Copyright (C) 1995-2010 Jean-loup Gailly and Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/*
+ *  ALGORITHM
+ *
+ *      The "deflation" process depends on being able to identify portions
+ *      of the input text which are identical to earlier input (within a
+ *      sliding window trailing behind the input currently being processed).
+ *
+ *      The most straightforward technique turns out to be the fastest for
+ *      most input files: try all possible matches and select the longest.
+ *      The key feature of this algorithm is that insertions into the string
+ *      dictionary are very simple and thus fast, and deletions are avoided
+ *      completely. Insertions are performed at each input character, whereas
+ *      string matches are performed only when the previous match ends. So it
+ *      is preferable to spend more time in matches to allow very fast string
+ *      insertions and avoid deletions. The matching algorithm for small
+ *      strings is inspired from that of Rabin & Karp. A brute force approach
+ *      is used to find longer strings when a small match has been found.
+ *      A similar algorithm is used in comic (by Jan-Mark Wams) and freeze
+ *      (by Leonid Broukhis).
+ *         A previous version of this file used a more sophisticated algorithm
+ *      (by Fiala and Greene) which is guaranteed to run in linear amortized
+ *      time, but has a larger average cost, uses more memory and is patented.
+ *      However the F&G algorithm may be faster for some highly redundant
+ *      files if the parameter max_chain_length (described below) is too large.
+ *
+ *  ACKNOWLEDGEMENTS
+ *
+ *      The idea of lazy evaluation of matches is due to Jan-Mark Wams, and
+ *      I found it in 'freeze' written by Leonid Broukhis.
+ *      Thanks to many people for bug reports and testing.
+ *
+ *  REFERENCES
+ *
+ *      Deutsch, L.P.,"DEFLATE Compressed Data Format Specification".
+ *      Available in http://www.ietf.org/rfc/rfc1951.txt
+ *
+ *      A description of the Rabin and Karp algorithm is given in the book
+ *         "Algorithms" by R. Sedgewick, Addison-Wesley, p252.
+ *
+ *      Fiala,E.R., and Greene,D.H.
+ *         Data Compression with Finite Windows, Comm.ACM, 32,4 (1989) 490-595
+ *
+ */
+
+/* @(#) $Id$ */
+
+
+========== support/deflate.h ==========
+/* deflate.h -- internal compression state
+ * Copyright (C) 1995-2010 Jean-loup Gailly
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* WARNING: this file should *not* be used by applications. It is
+   part of the implementation of the compression library and is
+   subject to change. Applications should only use zlib.h.
+ */
+
+/* @(#) $Id$ */
+
+
+========== support/dirent.c ==========
+/*
+ * <dirent.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2005 Jonathan Pryor
+ */
+
+
+========== support/fcntl.c ==========
+/*
+ * <fcntl.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004, 2006 Jonathan Pryor
+ */
+
+
+========== support/fstab.c ==========
+/*
+ * <fstab.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2005 Jonathan Pryor
+ */
+
+
+========== support/grp.c ==========
+/*
+ * <grp.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2005 Jonathan Pryor
+ */
+
+
+========== support/infback.c ==========
+/* infback.c -- inflate using a call-back interface
+ * Copyright (C) 1995-2009 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/*
+   This code is largely copied from inflate.c.  Normally either infback.o or
+   inflate.o would be linked into an application--not both.  The interface
+   with inffast.c is retained so that optimized assembler-coded versions of
+   inflate_fast() can be used with either inflate.c or infback.c.
+ */
+
+
+========== support/inffast.c ==========
+/* inffast.c -- fast decoding
+ * Copyright (C) 1995-2008, 2010 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+
+========== support/inffast.h ==========
+/* inffast.h -- header to use inffast.c
+ * Copyright (C) 1995-2003, 2010 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* WARNING: this file should *not* be used by applications. It is
+   part of the implementation of the compression library and is
+   subject to change. Applications should only use zlib.h.
+ */
+
+
+========== support/inflate.c ==========
+/* inflate.c -- zlib decompression
+ * Copyright (C) 1995-2010 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/*
+ * Change history:
+ *
+ * 1.2.beta0    24 Nov 2002
+ * - First version -- complete rewrite of inflate to simplify code, avoid
+ *   creation of window when not needed, minimize use of window when it is
+ *   needed, make inffast.c even faster, implement gzip decoding, and to
+ *   improve code readability and style over the previous zlib inflate code
+ *
+ * 1.2.beta1    25 Nov 2002
+ * - Use pointers for available input and output checking in inffast.c
+ * - Remove input and output counters in inffast.c
+ * - Change inffast.c entry and loop from avail_in >= 7 to >= 6
+ * - Remove unnecessary second byte pull from length extra in inffast.c
+ * - Unroll direct copy to three copies per loop in inffast.c
+ *
+ * 1.2.beta2    4 Dec 2002
+ * - Change external routine names to reduce potential conflicts
+ * - Correct filename to inffixed.h for fixed tables in inflate.c
+ * - Make hbuf[] unsigned char to match parameter type in inflate.c
+ * - Change strm->next_out[-state->offset] to *(strm->next_out - state->offset)
+ *   to avoid negation problem on Alphas (64 bit) in inflate.c
+ *
+ * 1.2.beta3    22 Dec 2002
+ * - Add comments on state->bits assertion in inffast.c
+ * - Add comments on op field in inftrees.h
+ * - Fix bug in reuse of allocated window after inflateReset()
+ * - Remove bit fields--back to byte structure for speed
+ * - Remove distance extra == 0 check in inflate_fast()--only helps for lengths
+ * - Change post-increments to pre-increments in inflate_fast(), PPC biased?
+ * - Add compile time option, POSTINC, to use post-increments instead (Intel?)
+ * - Make MATCH copy in inflate() much faster for when inflate_fast() not used
+ * - Use local copies of stream next and avail values, as well as local bit
+ *   buffer and bit count in inflate()--for speed when inflate_fast() not used
+ *
+ * 1.2.beta4    1 Jan 2003
+ * - Split ptr - 257 statements in inflate_table() to avoid compiler warnings
+ * - Move a comment on output buffer sizes from inffast.c to inflate.c
+ * - Add comments in inffast.c to introduce the inflate_fast() routine
+ * - Rearrange window copies in inflate_fast() for speed and simplification
+ * - Unroll last copy for window match in inflate_fast()
+ * - Use local copies of window variables in inflate_fast() for speed
+ * - Pull out common wnext == 0 case for speed in inflate_fast()
+ * - Make op and len in inflate_fast() unsigned for consistency
+ * - Add FAR to lcode and dcode declarations in inflate_fast()
+ * - Simplified bad distance check in inflate_fast()
+ * - Added inflateBackInit(), inflateBack(), and inflateBackEnd() in new
+ *   source file infback.c to provide a call-back interface to inflate for
+ *   programs like gzip and unzip -- uses window as output buffer to avoid
+ *   window copying
+ *
+ * 1.2.beta5    1 Jan 2003
+ * - Improved inflateBack() interface to allow the caller to provide initial
+ *   input in strm.
+ * - Fixed stored blocks bug in inflateBack()
+ *
+ * 1.2.beta6    4 Jan 2003
+ * - Added comments in inffast.c on effectiveness of POSTINC
+ * - Typecasting all around to reduce compiler warnings
+ * - Changed loops from while (1) or do {} while (1) to for (;;), again to
+ *   make compilers happy
+ * - Changed type of window in inflateBackInit() to unsigned char *
+ *
+ * 1.2.beta7    27 Jan 2003
+ * - Changed many types to unsigned or unsigned short to avoid warnings
+ * - Added inflateCopy() function
+ *
+ * 1.2.0        9 Mar 2003
+ * - Changed inflateBack() interface to provide separate opaque descriptors
+ *   for the in() and out() functions
+ * - Changed inflateBack() argument and in_func typedef to swap the length
+ *   and buffer address return values for the input function
+ * - Check next_in and next_out for Z_NULL on entry to inflate()
+ *
+ * The history for versions after 1.2.0 are in ChangeLog in zlib distribution.
+ */
+
+
+========== support/inflate.h ==========
+/* inflate.h -- internal inflate state definition
+ * Copyright (C) 1995-2009 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* WARNING: this file should *not* be used by applications. It is
+   part of the implementation of the compression library and is
+   subject to change. Applications should only use zlib.h.
+ */
+
+/* define NO_GZIP when compiling if you want to disable gzip header and
+   trailer decoding by inflate().  NO_GZIP would be used to avoid linking in
+   the crc code when it is not needed.  For shared libraries, gzip decoding
+   should be left enabled. */
+
+
+========== support/inftrees.c ==========
+/* inftrees.c -- generate Huffman trees for efficient decoding
+ * Copyright (C) 1995-2010 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+
+========== support/inftrees.h ==========
+/* inftrees.h -- header to use inftrees.c
+ * Copyright (C) 1995-2005, 2010 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* WARNING: this file should *not* be used by applications. It is
+   part of the implementation of the compression library and is
+   subject to change. Applications should only use zlib.h.
+ */
+
+/* Structure for decoding tables.  Each entry provides either the
+   information needed to do the operation requested by the code that
+   indexed that table entry, or it provides a pointer to another
+   table that indexes more bits of the code.  op indicates whether
+   the entry is a pointer to another table, a literal, a length or
+   distance, an end-of-block, or an invalid code.  For a table
+   pointer, the low four bits of op is the number of index bits of
+   that table.  For a length or distance, the low four bits of op
+   is the number of extra bits to get after the code.  bits is
+   the number of bits in this code or part of the code to drop off
+   of the bit buffer.  val is the actual byte to output in the case
+   of a literal, the base length or distance, or the offset from
+   the current table to the next table.  Each entry is four bytes. */
+
+
+========== support/minizip/crypt.h ==========
+/* crypt.h -- base code for crypt/uncrypt ZIPfile
+
+
+   Version 1.01e, February 12th, 2005
+
+   Copyright (C) 1998-2005 Gilles Vollant
+
+   This code is a modified version of crypting code in Infozip distribution
+
+   The encryption/decryption parts of this source code (as opposed to the
+   non-echoing password parts) were originally written in Europe.  The
+   whole source package can be freely distributed, including from the USA.
+   (Prior to January 2000, re-export from the US was a violation of US law.)
+
+   This encryption code is a direct transcription of the algorithm from
+   Roger Schlafly, described by Phil Katz in the file appnote.txt.  This
+   file (appnote.txt) is distributed with the PKZIP program (even in the
+   version without encryption capabilities).
+
+   If you don't need crypting in your application, just define symbols
+   NOCRYPT and NOUNCRYPT.
+
+   This code support the "Traditional PKWARE Encryption".
+
+   The new AES encryption added on Zip format by Winzip (see the page
+   http://www.winzip.com/aes_info.htm ) and PKWare PKZip 5.x Strong
+   Encryption is not supported.
+*/
+
+
+========== support/minizip/ioapi.c ==========
+/* ioapi.c -- IO base function header for compress/uncompress .zip
+   files using zlib + zip or unzip API
+
+   Version 1.01e, February 12th, 2005
+
+   Copyright (C) 1998-2005 Gilles Vollant
+*/
+
+
+========== support/minizip/ioapi.h ==========
+/* ioapi.h -- IO base function header for compress/uncompress .zip
+   files using zlib + zip or unzip API
+
+   Version 1.01e, February 12th, 2005
+
+   Copyright (C) 1998-2005 Gilles Vollant
+*/
+
+
+========== support/minizip/iowin32.c ==========
+/* iowin32.c -- IO base function header for compress/uncompress .zip
+   files using zlib + zip or unzip API
+   This IO API version uses the Win32 API (for Microsoft Windows)
+
+   Version 1.01e, February 12th, 2005
+
+   Copyright (C) 1998-2005 Gilles Vollant
+*/
+
+
+========== support/minizip/iowin32.h ==========
+/* iowin32.h -- IO base function header for compress/uncompress .zip
+   files using zlib + zip or unzip API
+   This IO API version uses the Win32 API (for Microsoft Windows)
+
+   Version 1.01e, February 12th, 2005
+
+   Copyright (C) 1998-2005 Gilles Vollant
+*/
+
+
+========== support/minizip/unzip.c ==========
+/* unzip.c -- IO for uncompress .zip files using zlib
+   Version 1.01e, February 12th, 2005
+
+   Copyright (C) 1998-2005 Gilles Vollant
+
+   Read unzip.h for more info
+*/
+
+/* Decryption code comes from crypt.c by Info-ZIP but has been greatly reduced in terms of
+compatibility with older software. The following is from the original crypt.c. Code
+woven in by Terry Thorsen 1/2003.
+*/
+/*
+  Copyright (c) 1990-2000 Info-ZIP.  All rights reserved.
+
+  See the accompanying file LICENSE, version 2000-Apr-09 or later
+  (the contents of which are also included in zip.h) for terms of use.
+  If, for some reason, all these files are missing, the Info-ZIP license
+  also may be found at:  ftp://ftp.info-zip.org/pub/infozip/license.html
+*/
+/*
+  crypt.c (full version) by Info-ZIP.      Last revised:  [see crypt.h]
+
+  The encryption/decryption parts of this source code (as opposed to the
+  non-echoing password parts) were originally written in Europe.  The
+  whole source package can be freely distributed, including from the USA.
+  (Prior to January 2000, re-export from the US was a violation of US law.)
+ */
+
+/*
+  This encryption code is a direct transcription of the algorithm from
+  Roger Schlafly, described by Phil Katz in the file appnote.txt.  This
+  file (appnote.txt) is distributed with the PKZIP program (even in the
+  version without encryption capabilities).
+ */
+
+
+========== support/minizip/unzip.h ==========
+/* unzip.h -- IO for uncompress .zip files using zlib
+   Version 1.01e, February 12th, 2005
+
+   Copyright (C) 1998-2005 Gilles Vollant
+
+   This unzip package allow extract file from .ZIP file, compatible with PKZip 2.04g
+     WinZip, InfoZip tools and compatible.
+
+   Multi volume ZipFile (span) are not supported.
+   Encryption compatible with pkzip 2.04g only supported
+   Old compressions used by old PKZip 1.x are not supported
+
+
+   I WAIT FEEDBACK at mail info@winimage.com
+   Visit also http://www.winimage.com/zLibDll/unzip.htm for evolution
+
+   Condition of use and distribution are the same than zlib :
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+
+
+*/
+
+/* for more info about .ZIP format, see
+      http://www.info-zip.org/pub/infozip/doc/appnote-981119-iz.zip
+      http://www.info-zip.org/pub/infozip/doc/
+   PkWare has also a specification at :
+      ftp://ftp.pkware.com/probdesc.zip
+*/
+
+
+========== support/minizip/zip.c ==========
+/* zip.c -- IO on .zip files using zlib
+   Version 1.01e, February 12th, 2005
+
+   27 Dec 2004 Rolf Kalbermatter
+   Modification to zipOpen2 to support globalComment retrieval.
+
+   Copyright (C) 1998-2005 Gilles Vollant
+
+   Read zip.h for more info
+*/
+
+
+========== support/minizip/zip.h ==========
+/* zip.h -- IO for compress .zip files using zlib
+   Version 1.01e, February 12th, 2005
+
+   Copyright (C) 1998-2005 Gilles Vollant
+
+   This unzip package allow creates .ZIP file, compatible with PKZip 2.04g
+     WinZip, InfoZip tools and compatible.
+   Multi volume ZipFile (span) are not supported.
+   Encryption compatible with pkzip 2.04g only supported
+   Old compressions used by old PKZip 1.x are not supported
+
+  For uncompress .zip file, look at unzip.h
+
+
+   I WAIT FEEDBACK at mail info@winimage.com
+   Visit also http://www.winimage.com/zLibDll/unzip.html for evolution
+
+   Condition of use and distribution are the same than zlib :
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+
+
+*/
+
+/* for more info about .ZIP format, see
+      http://www.info-zip.org/pub/infozip/doc/appnote-981119-iz.zip
+      http://www.info-zip.org/pub/infozip/doc/
+   PkWare has also a specification at :
+      ftp://ftp.pkware.com/probdesc.zip
+*/
+
+
+========== support/nl.c ==========
+/*
+ * Network availability and change notifications for linux.
+ *
+ * Authors:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * Copyright (c) Novell, Inc. 2011
+ */
+
+
+========== support/pwd.c ==========
+/*
+ * <pwd.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2005 Jonathan Pryor
+ */
+
+
+========== support/signal.c ==========
+/*
+ * <signal.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *   Jonathan Pryor (jpryor@novell.com)
+ *   Tim Jenks (tim.jenks@realtimeworlds.com)
+ *
+ * Copyright (C) 2004-2005 Jonathan Pryor
+ * Copyright (C) 2008 Novell, Inc.
+ */
+
+
+========== support/stdio.c ==========
+/*
+ * <stdio.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2006 Jonathan Pryor
+ */
+
+
+========== support/stdlib.c ==========
+/*
+ * <stdlib.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2005 Jonathan Pryor
+ */
+
+
+========== support/string.c ==========
+/*
+ * <string.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2005 Jonathan Pryor
+ */
+
+
+========== support/sys-mman.c ==========
+/*
+ * <sys/mman.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2006 Jonathan Pryor
+ */
+
+
+========== support/sys-sendfile.c ==========
+/*
+ * <sys/sendfile.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004 Jonathan Pryor
+ */
+
+
+========== support/sys-socket.c ==========
+/*
+ * <sys/socket.h> wrapper functions.
+ *
+ * Authors:
+ *   Steffen Kiess (s-kiess@web.de)
+ *
+ * Copyright (C) 2015 Steffen Kiess
+ */
+
+
+========== support/sys-stat.c ==========
+/*
+ * <sys/stat.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2006 Jonathan Pryor
+ */
+
+
+========== support/sys-statvfs.c ==========
+/*
+ * <sys/sendfile.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2006 Jonathan Pryor
+ */
+
+
+========== support/sys-time.c ==========
+/*
+ * <sys/stat.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2006 Jonathan Pryor
+ */
+
+
+========== support/sys-uio.c ==========
+/*
+ * <sys/uio.h> wrapper functions.
+ *
+ * Authors:
+ *   Steffen Kiess (s-kiess@web.de)
+ *
+ * Copyright (C) 2012 Steffen Kiess
+ */
+
+
+========== support/sys-utsname.c ==========
+/*
+ * <sys/sendfile.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004 Jonathan Pryor
+ */
+
+
+========== support/sys-wait.c ==========
+/*
+ * <sys/wait.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004 Jonathan Pryor
+ */
+
+
+========== support/sys-xattr.c ==========
+/*
+ * Wrapper functions for <sys/xattr.h> (or <attr/xattr.h>) and <sys/extattr.h>
+ *
+ * Authors:
+ *   Daniel Drake (dsd@gentoo.org)
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2005 Daniel Drake
+ * Copyright (C) 2006 Jonathan Pryor
+ */
+
+
+========== support/syslog.c ==========
+/*
+ * <syslog.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2005 Jonathan Pryor
+ */
+
+
+========== support/time.c ==========
+/*
+ * <time.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004 Jonathan Pryor
+ */
+
+
+========== support/trees.c ==========
+/* trees.c -- output deflated data using Huffman coding
+ * Copyright (C) 1995-2010 Jean-loup Gailly
+ * detect_data_type() function provided freely by Cosmin Truta, 2006
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/*
+ *  ALGORITHM
+ *
+ *      The "deflation" process uses several Huffman trees. The more
+ *      common source values are represented by shorter bit sequences.
+ *
+ *      Each code tree is stored in a compressed form which is itself
+ * a Huffman encoding of the lengths of all the code strings (in
+ * ascending order by source values).  The actual code strings are
+ * reconstructed from the lengths in the inflate process, as described
+ * in the deflate specification.
+ *
+ *  REFERENCES
+ *
+ *      Deutsch, L.P.,"'Deflate' Compressed Data Format Specification".
+ *      Available in ftp.uu.net:/pub/archiving/zip/doc/deflate-1.1.doc
+ *
+ *      Storer, James A.
+ *          Data Compression:  Methods and Theory, pp. 49-50.
+ *          Computer Science Press, 1988.  ISBN 0-7167-8156-5.
+ *
+ *      Sedgewick, R.
+ *          Algorithms, p290.
+ *          Addison-Wesley, 1983. ISBN 0-201-06672-6.
+ */
+
+/* @(#) $Id$ */
+
+/* #define GEN_TREES_H */
+
+
+========== support/uncompr.c ==========
+/* uncompr.c -- decompress a memory buffer
+ * Copyright (C) 1995-2003, 2010 Jean-loup Gailly.
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* @(#) $Id$ */
+
+
+========== support/unistd.c ==========
+/*
+ * <unistd.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2006 Jonathan Pryor
+ */
+
+
+========== support/utime.c ==========
+/*
+ * <stdio.h> wrapper functions.
+ *
+ * Authors:
+ *   Jonathan Pryor (jonpryor@vt.edu)
+ *
+ * Copyright (C) 2004-2006 Jonathan Pryor
+ */
+
+
+========== support/zconf.h ==========
+/* zconf.h -- configuration of the zlib compression library
+ * Copyright (C) 1995-2010 Jean-loup Gailly.
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* @(#) $Id$ */
+
+
+========== support/zlib-helper.c ==========
+/*
+ * Used by System.IO.Compression.DeflateStream
+ *
+ * Author:
+ *   Gonzalo Paniagua Javier (gonzalo@novell.com)
+ *
+ * (c) Copyright 2009 Novell, Inc.
+ */
+
+
+========== support/zlib.h ==========
+/* zlib.h -- interface of the 'zlib' general purpose compression library
+  version 1.2.5, April 19th, 2010
+
+  Copyright (C) 1995-2010 Jean-loup Gailly and Mark Adler
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
+
+  Jean-loup Gailly        Mark Adler
+  jloup@gzip.org          madler@alumni.caltech.edu
+
+
+  The data format used by the zlib library is described by RFCs (Request for
+  Comments) 1950 to 1952 in the files http://www.ietf.org/rfc/rfc1950.txt
+  (zlib format), rfc1951.txt (deflate format) and rfc1952.txt (gzip format).
+*/
+
+
+========== support/zutil.c ==========
+/* zutil.c -- target dependent utility functions for the compression library
+ * Copyright (C) 1995-2005, 2010 Jean-loup Gailly.
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* @(#) $Id$ */
+
+
+========== support/zutil.h ==========
+/* zutil.h -- internal interface and configuration of the compression library
+ * Copyright (C) 1995-2010 Jean-loup Gailly.
+ * For conditions of distribution and use, see copyright notice in zlib.h
+ */
+
+/* WARNING: this file should *not* be used by applications. It is
+   part of the implementation of the compression library and is
+   subject to change. Applications should only use zlib.h.
+ */
+
+/* @(#) $Id$ */

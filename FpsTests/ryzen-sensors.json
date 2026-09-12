@@ -1,0 +1,926 @@
+[
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #1",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/2",
+    "Value": 6.15
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #2",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/3",
+    "Value": 1.54
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #3",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/4",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #4",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/5",
+    "Value": 3.08
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #5",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/6",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #6",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/7",
+    "Value": 1.52
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #7",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/8",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #8",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/9",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #9",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/10",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #10",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/11",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #11",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/12",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #12",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/13",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #13",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/14",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #14",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/15",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #15",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/16",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core #16",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/17",
+    "Value": 1.54
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Total",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/0",
+    "Value": 0.86
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "CPU Core Max",
+    "Type": "Load",
+    "Id": "/amdcpu/0/load/1",
+    "Value": 6.15
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Package",
+    "Type": "Power",
+    "Id": "/amdcpu/0/power/0",
+    "Value": 2.3411162
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Cores (Average)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/1",
+    "Value": 2838
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Cores (Average Effective)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/2",
+    "Value": 37
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #1",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/3",
+    "Value": 1996
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #1 (Effective)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/4",
+    "Value": 127
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #1",
+    "Type": "Factor",
+    "Id": "/amdcpu/0/factor/0",
+    "Value": 20
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #1 (SMU)",
+    "Type": "Power",
+    "Id": "/amdcpu/0/power/1",
+    "Value": 0.5899247
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #1 VID",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/2",
+    "Value": 0.7125
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #2",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/5",
+    "Value": 1996
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #2 (Effective)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/6",
+    "Value": 109.5
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #2",
+    "Type": "Factor",
+    "Id": "/amdcpu/0/factor/1",
+    "Value": 20
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #2 (SMU)",
+    "Type": "Power",
+    "Id": "/amdcpu/0/power/2",
+    "Value": 0.4263224
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #2 VID",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/3",
+    "Value": 0.70625
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #3",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/7",
+    "Value": 2994
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #3 (Effective)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/8",
+    "Value": 17.5
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #3",
+    "Type": "Factor",
+    "Id": "/amdcpu/0/factor/2",
+    "Value": 30
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #3 (SMU)",
+    "Type": "Power",
+    "Id": "/amdcpu/0/power/3",
+    "Value": 0.07347956
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #3 VID",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/4",
+    "Value": 0.70625
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #4",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/9",
+    "Value": 2994
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #4 (Effective)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/10",
+    "Value": 5
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #4",
+    "Type": "Factor",
+    "Id": "/amdcpu/0/factor/3",
+    "Value": 30
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #4 (SMU)",
+    "Type": "Power",
+    "Id": "/amdcpu/0/power/4",
+    "Value": 0.01601623
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #4 VID",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/5",
+    "Value": 0.89375
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #5",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/11",
+    "Value": 2994
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #5 (Effective)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/12",
+    "Value": 3
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #5",
+    "Type": "Factor",
+    "Id": "/amdcpu/0/factor/4",
+    "Value": 30
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #5 (SMU)",
+    "Type": "Power",
+    "Id": "/amdcpu/0/power/5",
+    "Value": 0.0055534206
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #5 VID",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/6",
+    "Value": 0.89375
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #6",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/13",
+    "Value": 2994
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #6 (Effective)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/14",
+    "Value": 1
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #6",
+    "Type": "Factor",
+    "Id": "/amdcpu/0/factor/5",
+    "Value": 30
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #6 (SMU)",
+    "Type": "Power",
+    "Id": "/amdcpu/0/power/6",
+    "Value": 0.014624563
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #6 VID",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/7",
+    "Value": 0.89375
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #7",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/15",
+    "Value": 2994
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #7 (Effective)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/16",
+    "Value": 0
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #7",
+    "Type": "Factor",
+    "Id": "/amdcpu/0/factor/6",
+    "Value": 30
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #7 (SMU)",
+    "Type": "Power",
+    "Id": "/amdcpu/0/power/7",
+    "Value": 4.490622E-05
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #7 VID",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/8",
+    "Value": 0.89375
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #8",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/17",
+    "Value": 3743
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #8 (Effective)",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/18",
+    "Value": 35
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #8",
+    "Type": "Factor",
+    "Id": "/amdcpu/0/factor/7",
+    "Value": 37.5
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #8 (SMU)",
+    "Type": "Power",
+    "Id": "/amdcpu/0/power/8",
+    "Value": 0.056926437
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core #8 VID",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/9",
+    "Value": 1.09375
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core (Tctl/Tdie)",
+    "Type": "Temperature",
+    "Id": "/amdcpu/0/temperature/2",
+    "Value": 53.875008
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Core (SVI2 TFN)",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/0",
+    "Value": 1.55
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "SoC (SVI2 TFN)",
+    "Type": "Voltage",
+    "Id": "/amdcpu/0/voltage/1",
+    "Value": 1.55
+  },
+  {
+    "Kind": "Cpu",
+    "Name": "Bus Speed",
+    "Type": "Clock",
+    "Id": "/amdcpu/0/clock/0",
+    "Value": 99.80993
+  },
+  {
+    "Kind": "Memory",
+    "Name": "Memory Used",
+    "Type": "Data",
+    "Id": "/vram/data/2",
+    "Value": 12.728237
+  },
+  {
+    "Kind": "Memory",
+    "Name": "Memory Available",
+    "Type": "Data",
+    "Id": "/vram/data/3",
+    "Value": 3.6745071
+  },
+  {
+    "Kind": "Memory",
+    "Name": "Memory",
+    "Type": "Load",
+    "Id": "/vram/load/1",
+    "Value": 77.59822
+  },
+  {
+    "Kind": "Memory",
+    "Name": "Memory Used",
+    "Type": "Data",
+    "Id": "/ram/data/0",
+    "Value": 11.190907
+  },
+  {
+    "Kind": "Memory",
+    "Name": "Memory Available",
+    "Type": "Data",
+    "Id": "/ram/data/1",
+    "Value": 4.211838
+  },
+  {
+    "Kind": "Memory",
+    "Name": "Memory",
+    "Type": "Load",
+    "Id": "/ram/load/0",
+    "Value": 72.65527
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tCKAVGmin (Minimum Cycle Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/20",
+    "Value": 0.625
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tCKAVGmax (Maximum Cycle Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/21",
+    "Value": 1.6
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tAA (CAS Latency Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/22",
+    "Value": 13.75
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRCD (RAS to CAS Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/23",
+    "Value": 13.75
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRP (Row Precharge Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/24",
+    "Value": 13.75
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRAS (Active to Precharge Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/25",
+    "Value": 32
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRC (Active to Active/Refresh Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/26",
+    "Value": 45.75
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRFC1 (Refresh Recovery Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/27",
+    "Value": 350
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRFC2 (Refresh Recovery Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/28",
+    "Value": 260
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRFC4 (Refresh Recovery Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/29",
+    "Value": 160
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tFAW (Four Activate Window Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/30",
+    "Value": 21
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRRD_S (Activate to Activate Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/31",
+    "Value": 2.5
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRRD_L (Activate to Activate Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/32",
+    "Value": 4.9
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tCCD_L (CAS to CAS Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/33",
+    "Value": 5
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tWR (Write Recovery Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/34",
+    "Value": 15
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tWTR_S (Write to Read Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/35",
+    "Value": 2.5
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tWTR_L (Write to Read Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/0/timing/36",
+    "Value": 7.5
+  },
+  {
+    "Kind": "Memory",
+    "Name": "Capacity",
+    "Type": "Data",
+    "Id": "/memory/dimm/0/data/50",
+    "Value": 8
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tCKAVGmin (Minimum Cycle Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/20",
+    "Value": 0.625
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tCKAVGmax (Maximum Cycle Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/21",
+    "Value": 1.6
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tAA (CAS Latency Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/22",
+    "Value": 13.75
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRCD (RAS to CAS Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/23",
+    "Value": 13.75
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRP (Row Precharge Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/24",
+    "Value": 13.75
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRAS (Active to Precharge Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/25",
+    "Value": 32
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRC (Active to Active/Refresh Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/26",
+    "Value": 45.75
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRFC1 (Refresh Recovery Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/27",
+    "Value": 350
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRFC2 (Refresh Recovery Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/28",
+    "Value": 260
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRFC4 (Refresh Recovery Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/29",
+    "Value": 160
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tFAW (Four Activate Window Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/30",
+    "Value": 21
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRRD_S (Activate to Activate Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/31",
+    "Value": 2.5
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tRRD_L (Activate to Activate Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/32",
+    "Value": 4.9
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tCCD_L (CAS to CAS Delay Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/33",
+    "Value": 5
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tWR (Write Recovery Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/34",
+    "Value": 15
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tWTR_S (Write to Read Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/35",
+    "Value": 2.5
+  },
+  {
+    "Kind": "Memory",
+    "Name": "tWTR_L (Write to Read Time)",
+    "Type": "Timing",
+    "Id": "/memory/dimm/1/timing/36",
+    "Value": 7.5
+  },
+  {
+    "Kind": "Memory",
+    "Name": "Capacity",
+    "Type": "Data",
+    "Id": "/memory/dimm/1/data/50",
+    "Value": 8
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "GPU Memory Total",
+    "Type": "SmallData",
+    "Id": "/gpu-amd/0/smalldata/2",
+    "Value": 512
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "Fullscreen FPS",
+    "Type": "Factor",
+    "Id": "/gpu-amd/0/factor/0",
+    "Value": -1
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Dedicated Memory Total",
+    "Type": "SmallData",
+    "Id": "/gpu-amd/0/smalldata/5",
+    "Value": 495.5625
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Dedicated Memory Free",
+    "Type": "SmallData",
+    "Id": "/gpu-amd/0/smalldata/4",
+    "Value": 200.15234
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Dedicated Memory Used",
+    "Type": "SmallData",
+    "Id": "/gpu-amd/0/smalldata/3",
+    "Value": 295.41016
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Shared Memory Used",
+    "Type": "SmallData",
+    "Id": "/gpu-amd/0/smalldata/6",
+    "Value": 229.05078
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Shared Memory Free",
+    "Type": "SmallData",
+    "Id": "/gpu-amd/0/smalldata/7",
+    "Value": 7657.1543
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Shared Memory Total",
+    "Type": "SmallData",
+    "Id": "/gpu-amd/0/smalldata/8",
+    "Value": 7886.205
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D 3D",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/2",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D High Priority 3D",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/6",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D High Priority Compute",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/7",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Compute 0",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/3",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Compute 1",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/4",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Video JPEG",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/12",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Video Decode 1",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/11",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Video Codec 0",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/10",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Copy",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/5",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Timer 0",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/9",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "D3D Security 1",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/8",
+    "Value": 0
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "GPU Memory Used",
+    "Type": "SmallData",
+    "Id": "/gpu-amd/0/smalldata/0",
+    "Value": 295
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "GPU Memory Free",
+    "Type": "SmallData",
+    "Id": "/gpu-amd/0/smalldata/1",
+    "Value": 217
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "GPU Core",
+    "Type": "Clock",
+    "Id": "/gpu-amd/0/clock/0",
+    "Value": 400
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "GPU Memory",
+    "Type": "Clock",
+    "Id": "/gpu-amd/0/clock/2",
+    "Value": 1200
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "GPU Core",
+    "Type": "Voltage",
+    "Id": "/gpu-amd/0/voltage/0",
+    "Value": 0.004
+  },
+  {
+    "Kind": "GpuAmd",
+    "Name": "GPU Core",
+    "Type": "Load",
+    "Id": "/gpu-amd/0/load/0",
+    "Value": 0
+  }
+]

@@ -1,0 +1,386 @@
+Runtime source notices: MinGW-w64 v5.0.3 and GCC 6.4.0. Original source headers follow. Root MinGW COPYING/AUTHORS and GCC GPL3/Runtime Exception accompany this file.
+
+========== mingw/crt/atonexit.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/CRT_fp10.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/crt_handler.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/crtdll.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/dllentry.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/gccmain.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/gs_support.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/merr.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/mingw_helpers.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/natstart.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/pesect.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/pseudo-reloc-list.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== mingw/crt/pseudo-reloc.c ==========
+/* pseudo-reloc.c
+
+   Contributed by Egor Duda  <deo@logos-m.ru>
+   Modified by addition of runtime_pseudo_reloc version 2
+   by Kai Tietz  <kai.tietz@onevision.com>
+	
+   THIS SOFTWARE IS NOT COPYRIGHTED
+
+   This source code is offered for use in the public domain. You may
+   use, modify or distribute it freely.
+
+   This code is distributed in the hope that it will be useful but
+   WITHOUT ANY WARRANTY. ALL WARRENTIES, EXPRESS OR IMPLIED ARE HEREBY
+   DISCLAMED. This includes but is not limited to warrenties of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+========== mingw/crt/tlsmcrt.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ *
+ * Written by Kai Tietz  <kai.tietz@onevision.com>
+ */
+
+/* We support TLS cleanup code in any case. If shared version of libgcc is used _CRT_MT has value 1,
+ otherwise
+   we do tls cleanup in runtime and _CRT_MT has value 2.  */
+
+========== mingw/crt/tlssup.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ *
+ * Written by Kai Tietz  <kai.tietz@onevision.com>
+ */
+
+========== mingw/crt/tlsthrd.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ *
+ * Written by Kai Tietz  <kai.tietz@onevision.com>
+ *
+ * This file is used by if gcc is built with --enable-threads=win32.
+ *
+ * Based on version created by Mumit Khan  <khan@nanotech.wisc.edu>
+ *
+ */
+
+========== mingw/math/sqrt.c ==========
+/*
+ This Software is provided under the Zope Public License (ZPL) Version 2.1.
+
+ Copyright (c) 2009, 2010 by the mingw-w64 project
+
+ See the AUTHORS file for the list of contributors to the mingw-w64 project.
+
+ This license has been certified as open source. It has also been designated
+ as GPL compatible by the Free Software Foundation (FSF).
+
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+
+   1. Redistributions in source code must retain the accompanying copyright
+      notice, this list of conditions, and the following disclaimer.
+   2. Redistributions in binary form must reproduce the accompanying
+      copyright notice, this list of conditions, and the following disclaimer
+      in the documentation and/or other materials provided with the
+      distribution.
+   3. Names of the copyright holders must not be used to endorse or promote
+      products derived from this software without prior written permission
+      from the copyright holders.
+   4. The right to distribute this software or to use it for any purpose does
+      not give you the right to use Servicemarks (sm) or Trademarks (tm) of
+      the copyright holders.  Use of them is covered by separate agreement
+      with the copyright holders.
+   5. If any files are modified, you must cause the modified files to carry
+      prominent notices stating that you changed the files and the date of
+      any change.
+
+ Disclaimer
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS ``AS IS'' AND ANY EXPRESSED
+ OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+ EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+ OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+========== mingw/stdio/strtok_r.c ==========
+/*-
+ * Copyright (c) 1998 Softweyr LLC.  All rights reserved.
+ *
+ * strtok_r, from Berkeley strtok
+ * Oct 13, 1998 by Wes Peters <wes@softweyr.com>
+ *
+ * Copyright (c) 1988, 1993
+ *	The Regents of the University of California.  All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notices, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notices, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY SOFTWEYR LLC, THE REGENTS AND CONTRIBUTORS
+ * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ * PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL SOFTWEYR LLC, THE
+ * REGENTS, OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+ * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+========== mingw/stdio/vsnprintf.c ==========
+/**
+ * This file has no copyright assigned and is placed in the Public Domain.
+ * This file is part of the mingw-w64 runtime package.
+ * No warranty is given; refer to the file DISCLAIMER.PD within this package.
+ */
+
+========== gcc/libgcc/config/i386/cygming-crtbegin.c ==========
+/* crtbegin object for windows32 targets.
+   Copyright (C) 2007-2016 Free Software Foundation, Inc.
+
+   Contributed by Danny Smith <dannysmith@users.sourceforge.net>
+
+This file is part of GCC.
+
+GCC is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 3, or (at your option) any later
+version.
+
+GCC is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details.
+
+Under Section 7 of GPL version 3, you are granted additional
+permissions described in the GCC Runtime Library Exception, version
+3.1, as published by the Free Software Foundation.
+
+You should have received a copy of the GNU General Public License and
+a copy of the GCC Runtime Library Exception along with this program;
+see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+<http://www.gnu.org/licenses/>.  */
+
+/* Target machine header files require this define. */
+
+========== gcc/libgcc/config/i386/cygming-crtend.c ==========
+/* crtend object for windows32 targets.
+   Copyright (C) 2007-2016 Free Software Foundation, Inc.
+
+   Contributed by Danny Smith <dannysmith@users.sourceforge.net>
+
+This file is part of GCC.
+
+GCC is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 3, or (at your option) any later
+version.
+
+GCC is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details.
+
+Under Section 7 of GPL version 3, you are granted additional
+permissions described in the GCC Runtime Library Exception, version
+3.1, as published by the Free Software Foundation.
+
+You should have received a copy of the GNU General Public License and
+a copy of the GCC Runtime Library Exception along with this program;
+see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+<http://www.gnu.org/licenses/>.  */
+
+/* Target machine header files require this define. */
+
+========== gcc/libgcc/config/i386/cygwin.S ==========
+/* stuff needed for libgcc on win32.
+ *
+ *   Copyright (C) 1996-2016 Free Software Foundation, Inc.
+ *   Written By Steve Chamberlain
+ * 
+ * This file is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 3, or (at your option) any
+ * later version.
+ * 
+ * This file is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * Under Section 7 of GPL version 3, you are granted additional
+ * permissions described in the GCC Runtime Library Exception, version
+ * 3.1, as published by the Free Software Foundation.
+ * 
+ * You should have received a copy of the GNU General Public License and
+ * a copy of the GCC Runtime Library Exception along with this program;
+ * see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+ * <http://www.gnu.org/licenses/>.
+ */
+
+========== gcc/libgcc/crtstuff.c ==========
+/* Specialized bits of code needed to support construction and
+   destruction of file-scope objects in C++ code.
+   Copyright (C) 1991-2016 Free Software Foundation, Inc.
+   Contributed by Ron Guilmette (rfg@monkeys.com).
+
+This file is part of GCC.
+
+GCC is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 3, or (at your option) any later
+version.
+
+GCC is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details.
+
+Under Section 7 of GPL version 3, you are granted additional
+permissions described in the GCC Runtime Library Exception, version
+3.1, as published by the Free Software Foundation.
+
+You should have received a copy of the GNU General Public License and
+a copy of the GCC Runtime Library Exception along with this program;
+see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+<http://www.gnu.org/licenses/>.  */
+
+/* This file is a bit like libgcc2.c in that it is compiled
+   multiple times and yields multiple .o files.
+
+   This file is useful on target machines where the object file format
+   supports multiple "user-defined" sections (e.g. COFF, ELF, ROSE).  On
+   such systems, this file allows us to avoid running collect (or any
+   other such slow and painful kludge).  Additionally, if the target
+   system supports a .init section, this file allows us to support the
+   linking of C++ code with a non-C++ main program.
+
+   Note that if INIT_SECTION_ASM_OP is defined in the tm.h file, then
+   this file *will* make use of the .init section.  If that symbol is
+   not defined however, then the .init section will not be used.
+
+   Currently, only ELF and COFF are supported.  It is likely however that
+   ROSE could also be supported, if someone was willing to do the work to
+   make whatever (small?) adaptations are needed.  (Some work may be
+   needed on the ROSE assembler and linker also.)
+
+   This file must be compiled with gcc.  */
+
+/* Target machine header files require this define. */
+
+========== gcc/libgcc/libgcc2.c ==========
+/* More subroutines needed by GCC output code on some machines.  */
+/* Compile this one with gcc.  */
+/* Copyright (C) 1989-2016 Free Software Foundation, Inc.
+
+This file is part of GCC.
+
+GCC is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 3, or (at your option) any later
+version.
+
+GCC is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details.
+
+Under Section 7 of GPL version 3, you are granted additional
+permissions described in the GCC Runtime Library Exception, version
+3.1, as published by the Free Software Foundation.
+
+You should have received a copy of the GNU General Public License and
+a copy of the GCC Runtime Library Exception along with this program;
+see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+<http://www.gnu.org/licenses/>.  */
