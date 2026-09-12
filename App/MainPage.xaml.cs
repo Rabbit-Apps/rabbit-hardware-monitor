@@ -65,6 +65,7 @@ public sealed partial class MainPage : Page
         edit.Click += Edit;
         var editShortcut = new Microsoft.UI.Xaml.Input.KeyboardAccelerator { Key = Windows.System.VirtualKey.E, Modifiers = Windows.System.VirtualKeyModifiers.Control };
         editShortcut.Invoked += (_, args) => { args.Handled = true; Edit(edit, new RoutedEventArgs()); };
+        KeyboardAcceleratorPlacementMode = Microsoft.UI.Xaml.Input.KeyboardAcceleratorPlacementMode.Hidden;
         KeyboardAccelerators.Add(editShortcut);
         ToolTipService.SetToolTip(edit, "Edit dashboard (Ctrl+E)");
         Grid.SetColumn(edit, 1);
