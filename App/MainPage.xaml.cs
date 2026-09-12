@@ -174,7 +174,7 @@ public sealed partial class MainPage : Page
                         r.Value.Foreground = Brush(r.Warning ? "#FF979C" : "#F3F3F5");
                         AutomationProperties.SetHelpText(r.Value, r.Warning ? "Temperature warning" : "");
                         if (r.Bar != null)
-                            r.Bar.Foreground = Brush(r.Warning ? "#EE777E" : r.Colour);
+                            r.Bar.Foreground = BarBrush(r.Warning ? "#EE777E" : r.Colour);
                         if (r.Note != null)
                             r.Note.Text = configured ? $"Scale 0–100 °C · {(r.Warning ? "Warning" : "Warn")} at {threshold:N0} °C" : "Scale 0–100 °C · warning off";
                         else if (r.Warning)
@@ -187,7 +187,7 @@ public sealed partial class MainPage : Page
                         if (r.Capacity)
                         {
                             r.Warning = value.HasValue && value >= (r.Warning ? 87 : 90);
-                            r.Bar.Foreground = Brush(r.Warning ? "#EE777E" : r.Colour);
+                            r.Bar.Foreground = BarBrush(r.Warning ? "#EE777E" : r.Colour);
                             r.Note!.Text = r.Warning ? "Near capacity" : "";
                         }
                         if (r.Kind == "GpuNvidia" && r.Name == "GPU Memory" && samples.UsesAmdGpu && !sensorOverrides.ContainsKey(r.Title))

@@ -19,15 +19,28 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ProgressBar">
-                        <Grid x:Name="LayoutRoot" Background="{TemplateBinding Background}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                        <Grid x:Name="LayoutRoot">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Determinate" />
                                     <VisualState x:Name="Updating" />
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Rectangle x:Name="DeterminateProgressBarIndicator" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" />
+                            <Rectangle x:Name="DeterminateProgressBarIndicator" HorizontalAlignment="Left" Fill="{TemplateBinding Foreground}" RadiusX="5" RadiusY="5" />
+                            <Grid IsHitTestVisible="False" Opacity="0.35">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0" Width="1" Margin="0,2" HorizontalAlignment="Right" Fill="White" />
+                                <Rectangle Grid.Column="1" Width="1" Margin="0,2" HorizontalAlignment="Right" Fill="White" />
+                                <Rectangle Grid.Column="2" Width="1" Margin="0,2" HorizontalAlignment="Right" Fill="White" />
+                            </Grid>
                         </Grid>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

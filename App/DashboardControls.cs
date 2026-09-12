@@ -9,6 +9,20 @@ public sealed partial class MainPage
 {
     // Shared on the UI thread; palette updates preserve existing element bindings.
     static readonly Dictionary<string, SolidColorBrush> brushes = [];
+    static readonly Dictionary<string, LinearGradientBrush> barBrushes = [];
+    static LinearGradientBrush BarBrush(string hex)
+    {
+        if (!barBrushes.TryGetValue(hex, out var gradient))
+        {
+            var colour = Brush(hex).Color;
+            var darker = Windows.UI.Color.FromArgb(255, (byte)(colour.R * .78), (byte)(colour.G * .78), (byte)(colour.B * .78));
+            gradient = new LinearGradientBrush { StartPoint = new Windows.Foundation.Point(0, .5), EndPoint = new Windows.Foundation.Point(1, .5) };
+            gradient.GradientStops.Add(new GradientStop { Color = darker, Offset = 0 });
+            gradient.GradientStops.Add(new GradientStop { Color = colour, Offset = 1 });
+            barBrushes.Add(hex, gradient);
+        }
+        return gradient;
+    }
 
     static SolidColorBrush Brush(string hex)
     {
@@ -31,7 +45,7 @@ public sealed partial class MainPage
     {
         var panel = new StackPanel { Spacing = 7 };
         panel.Children.Add(Text(title));
-        var bar = new ProgressBar { Minimum = 0, Maximum = 100, Height = 9, Foreground = Brush(colour), Background = Brush("#393C43") };
+        var bar = new ProgressBar { Minimum = 0, Maximum = 100, Height = 10, Foreground = BarBrush(colour), Background = Brush("#393C43") };
         bar.Style = (Style)Resources["SensorBarStyle"];
         AutomationProperties.SetName(bar, title);
         panel.Children.Add(bar);
