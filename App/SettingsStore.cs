@@ -104,7 +104,11 @@ internal sealed record DashboardPreferences
             Visibility = saved.Visibility ?? [],
             Thresholds = (saved.Thresholds ?? []).Where(p => double.IsFinite(p.Value) && p.Value >= 1 && p.Value <= 200).ToDictionary(),
             Arrangement = (saved.Arrangement ?? []).Where(p => p != null && !string.IsNullOrWhiteSpace(p.Title) && p.Column is 0 or 1).DistinctBy(p => p.Title).ToList(),
-            Fps = saved.Fps ?? new()
+            Fps = (saved.Fps ?? new()) with
+            {
+                Application = string.IsNullOrWhiteSpace(saved.Fps?.Application) ? null : saved.Fps.Application,
+                ResetSeconds = saved.Fps?.ResetSeconds is 30 or 60 or 300 or 600 ? saved.Fps.ResetSeconds : 0
+            }
         };
     }
 }

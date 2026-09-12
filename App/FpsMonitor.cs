@@ -214,7 +214,8 @@ internal sealed class FpsMonitor
                 if (!helper.HasExited)
                     helper.Kill();
             }
-            catch (InvalidOperationException) { }
+            catch (Exception error) when (error is InvalidOperationException or System.ComponentModel.Win32Exception or NotSupportedException)
+            { Log("FPS fallback termination: " + error.Message); }
         }
     }
 

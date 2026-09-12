@@ -98,6 +98,9 @@ internal static class Program
             string file=System.IO.Path.Combine(temp,"dashboard.json");
             System.IO.File.WriteAllText(file,"{\"SensorOverrides\":{\"CPU temperature\":null,\"GPU temperature\":\"\"}}");
             Check(DashboardPreferences.Load(out _,temp).SensorOverrides.Count==0,"Invalid sensor overrides are discarded");
+            System.IO.File.WriteAllText(file,"{\"Fps\":{\"Application\":\"  \",\"ResetSeconds\":-10}}");
+            var normalizedFps=DashboardPreferences.Load(out _,temp).Fps;
+            Check(normalizedFps.Application==null && normalizedFps.ResetSeconds==0,"Malformed FPS settings normalize safely");
             var first=new DashboardPreferences{Fps=new(false,"game.exe",true),Visibility=new(){["CPU temperature"]=false},Arrangement=[new("P-core utilisation",1)],Thresholds=new(){["CPU temperature"]=80}};
             SettingsStore.Write(file,first);
             SettingsStore.Write(file,first with{Fps=new(true,null,false)});
@@ -168,6 +171,9 @@ internal static class Program
         Check(dualSnapshot.Resolve("GpuNvidia",LibreHardwareMonitor.Hardware.SensorType.Temperature,"GPU Core",null,false)==70,"Dedicated GPU wins over integrated of same brand");
         Check(dualSnapshot.Resolve("GpuNvidia",LibreHardwareMonitor.Hardware.SensorType.Temperature,"GPU Hot Spot",null,true)==null,"Missing selected GPU sensor never leaks from another adapter");
         Check(dualSnapshot.SelectedValue("/gpu-amd/0/temperature/0",LibreHardwareMonitor.Hardware.SensorType.Temperature)==40,"Manual GPU override remains available");
+        var malformedGpu=new SensorSnapshot(new[] { dual[0] with { Id="invalid" }, dual[1] });
+        Check(malformedGpu.SelectedGpu?.Id=="/gpu-amd/1","Malformed fallback GPU identifier does not break valid discovery");
+        Check(new SensorSnapshot(new[] { dual[0] with { Id="/" } }).SelectedGpu==null,"Incomplete GPU identifiers are ignored");
         Console.WriteLine($"Passed {assertions} FPS, settings and sensor assertions.");
     }
 }

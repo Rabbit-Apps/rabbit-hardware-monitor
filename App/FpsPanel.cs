@@ -29,7 +29,7 @@ public sealed partial class MainPage
     void CreateFpsPanel()
     {
         fpsSettings = preferences.Fps;
-        var panel = Section("Frame rate", "#66516A");
+        var panel = Section("Frame rate", "#756A3D");
         panel.Children.Add(fpsValue);
         panel.Children.Add(fpsAverage);
         panel.Children.Add(fpsLow);

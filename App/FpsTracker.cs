@@ -15,7 +15,7 @@ internal sealed class FpsTracker
     public void ResetStatistics(double now) { statistics.Reset(); resetAt = now; }
     public (double? Average, double? Low) Statistics(double now, Candidate? current, int? process)
     {
-        if (process == null || (statisticsStream.HasValue && statisticsStream.Value.Pid != process))
+        if (statisticsStream.HasValue && statisticsStream.Value.Pid != process)
         { statisticsStream = null; ResetStatistics(now); }
         if (current != null && statisticsStream != (current.Pid, current.Chain))
         { statisticsStream = (current.Pid, current.Chain); ResetStatistics(now); }

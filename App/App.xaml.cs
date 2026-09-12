@@ -31,9 +31,14 @@ public partial class App : Application
     {
         InitializeComponent();
         UnhandledException += (_, e) => {
+            try
+            {
             var folder = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "HardwareMonitor");
             System.IO.Directory.CreateDirectory(folder);
             System.IO.File.WriteAllText(System.IO.Path.Combine(folder, "startup-error.txt"), e.Exception.ToString());
+            }
+            catch (Exception error) when (error is System.IO.IOException or UnauthorizedAccessException)
+            { System.Diagnostics.Trace.WriteLine("Could not write crash report: " + error.Message); }
         };
     }
 

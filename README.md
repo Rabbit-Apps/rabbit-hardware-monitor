@@ -11,7 +11,7 @@ The inspiration came after I switched to an NVIDIA GPU and couldn't find a repla
 ## Run
 Download the Windows x64 portable ZIP from [Releases](https://github.com/Rabbit-Apps/rabbit-hardware-monitor/releases).
 
-Extract the entire portable ZIP and run HardwareMonitor.exe as administrator. Install the official PawnIO driver separately from https://pawnio.eu/. Visual Studio is not needed to run the portable build. Settings remain in the per-user HardwareMonitor local application-data folder.
+Extract the entire portable ZIP and double-click HardwareMonitor.exe. The app automatically requests administrator access; approve the Windows permission prompt to continue. Install the official PawnIO driver separately from https://pawnio.eu/. Visual Studio is not needed to run the portable build. Settings remain in the per-user HardwareMonitor local application-data folder.
 
 ## Build
 Use Windows, .NET 10 SDK and the Visual Studio Windows/WinUI build tools. From this folder:

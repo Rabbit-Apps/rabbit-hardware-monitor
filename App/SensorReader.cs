@@ -80,7 +80,7 @@ internal sealed class SensorSnapshot
         byType = values.ToLookup(s => (s.Kind, s.Type));
         byId = values.DistinctBy(s => s.Id).ToDictionary(s => s.Id);
         IsAmdCpu = values.Any(s => s.Kind == "Cpu" && s.Id.StartsWith("/amdcpu/", StringComparison.Ordinal));
-        var candidates = devices ?? values.Where(s => s.Kind.StartsWith("Gpu", StringComparison.Ordinal)).Select(s => new GpuDevice(s.Id[..s.Id.LastIndexOf('/')][..s.Id[..s.Id.LastIndexOf('/')].LastIndexOf('/')], s.Kind, null)).Distinct();
+        var candidates = devices ?? GpuDiscovery.FromSamples(values);
         SelectedGpu = candidates.OrderBy(g => g.Integrated == false ? 0 : g.Integrated == null ? 1 : 2).ThenBy(g => g.Id, StringComparer.Ordinal).FirstOrDefault();
         UsesAmdGpu = SelectedGpu?.Kind == "GpuAmd";
         HasCpuTemperature = byType[("Cpu", SensorType.Temperature)].Any(Valid);

@@ -8,6 +8,20 @@ internal sealed record GpuDevice(string Id, string Kind, bool? Integrated);
 
 internal static class GpuDiscovery
 {
+    internal static IEnumerable<GpuDevice> FromSamples(IEnumerable<SensorSample> samples)
+    {
+        var seen = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var sample in samples)
+        {
+            if (!sample.Kind.StartsWith("Gpu", StringComparison.Ordinal) || string.IsNullOrEmpty(sample.Id)) continue;
+            int valueSeparator = sample.Id.LastIndexOf('/');
+            if (valueSeparator <= 0 || valueSeparator == sample.Id.Length - 1) continue;
+            int typeSeparator = sample.Id.LastIndexOf('/', valueSeparator - 1);
+            if (typeSeparator <= 0) continue;
+            string root = sample.Id[..typeSeparator];
+            if (seen.Add(root)) yield return new(root, sample.Kind, null);
+        }
+    }
     // The pinned LHM version has no public integrated/discrete property. Isolate
     // its internal D3D bridge here, and treat unavailable metadata as unknown.
     // Called once at startup, never in the polling loop.
