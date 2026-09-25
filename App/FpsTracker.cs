@@ -11,16 +11,29 @@ internal sealed class FpsTracker
     readonly FpsStatistics statistics = new();
     (int Pid, string Chain)? statisticsStream;
     double resetAt;
+    (double? Average, double? Low) previous;
+    internal record StatisticsSnapshot(double? Average, double? Low, double? PreviousAverage, double? PreviousLow);
     public int ResetSeconds { get; set; }
-    public void ResetStatistics(double now) { statistics.Reset(); resetAt = now; }
-    public (double? Average, double? Low) Statistics(double now, Candidate? current, int? process)
+    public void ResetStatistics(double now)
+    {
+        var completed = statistics.Read();
+        // Empty/collecting periods must not erase the last usable comparison.
+        if (completed.Average.HasValue || completed.Low.HasValue) previous = completed;
+        statistics.Reset(); resetAt = now;
+    }
+    void ClearStatistics(double now)
+    {
+        statistics.Reset(); previous = (null, null); resetAt = now;
+    }
+    public StatisticsSnapshot Statistics(double now, Candidate? current, int? process)
     {
         if (statisticsStream.HasValue && statisticsStream.Value.Pid != process)
-        { statisticsStream = null; ResetStatistics(now); }
+        { statisticsStream = null; ClearStatistics(now); }
         if (current != null && statisticsStream != (current.Pid, current.Chain))
-        { statisticsStream = (current.Pid, current.Chain); ResetStatistics(now); }
+        { statisticsStream = (current.Pid, current.Chain); ClearStatistics(now); }
         if (ResetSeconds > 0 && now - resetAt >= ResetSeconds) ResetStatistics(now);
-        return current == null ? (null, null) : statistics.Read();
+        var active = current == null ? (Average: (double?)null, Low: (double?)null) : statistics.Read();
+        return new(active.Average, active.Low, previous.Average, previous.Low);
     }
     sealed class Stream
     {

@@ -5,7 +5,8 @@ namespace HardwareMonitor;
 
 internal sealed class FpsMonitor
 {
-    internal record Snapshot(string Message, double? Fps, string[] Applications, double? Average = null, double? Low = null);
+    internal record Snapshot(string Message, double? Fps, string[] Applications, double? Average = null, double? Low = null,
+        double? PreviousAverage = null, double? PreviousLow = null);
     public void ResetStatistics() { lock (gate) tracker.ResetStatistics(clock.Elapsed.TotalSeconds); }
     public void ConfigureStatistics(int seconds) { lock (gate) { tracker.ResetSeconds = seconds; tracker.ResetStatistics(clock.Elapsed.TotalSeconds); } }
     public event Action<Snapshot>? Updated;
@@ -82,6 +83,7 @@ internal sealed class FpsMonitor
             helper.StartInfo.RedirectStandardOutput = true;
             helper.StartInfo.RedirectStandardError = true;
             started = helper.Start();
+            CpuPlacement.ConfigureHelper(helper);
             var exited = helper.WaitForExitAsync();
             errors = streams.ReadDiagnostics(helper.StandardError, readerCancellation.Token);
             frames = streams.ReadFrames(helper.StandardOutput, line =>
@@ -123,7 +125,7 @@ internal sealed class FpsMonitor
 
                 FpsTracker.Candidate[] candidates;
                 int? selected;
-                (double? Average, double? Low) statistics;
+                FpsTracker.StatisticsSnapshot statistics;
                 lock (gate)
                 {
                     double now = clock.Elapsed.TotalSeconds;
@@ -148,7 +150,8 @@ internal sealed class FpsMonitor
                     : lastName != null ? Path.GetFileNameWithoutExtension(lastName) + " · waiting for frames"
                     : ManualApplication != null ? Path.GetFileNameWithoutExtension(ManualApplication) + " · waiting for frames"
                     : "No game detected";
-                Updated?.Invoke(new(message, current?.Fps, candidates.Select(c => c.Name).Distinct(StringComparer.OrdinalIgnoreCase).Order().ToArray(), statistics.Average, statistics.Low));
+                Updated?.Invoke(new(message, current?.Fps, candidates.Select(c => c.Name).Distinct(StringComparer.OrdinalIgnoreCase).Order().ToArray(),
+                    statistics.Average, statistics.Low, statistics.PreviousAverage, statistics.PreviousLow));
                 await FpsStreamReader.WaitForUpdate(frames, exited, stop.Token).ConfigureAwait(false);
             }
             if (!stop.IsCancellationRequested)

@@ -66,6 +66,7 @@ internal sealed record ReadingPlacement(string Title, int Column);
 
 internal sealed record DashboardPreferences
 {
+    public bool PreferECores { get; init; } = true;
     public Dictionary<string, bool> Visibility { get; init; } = [];
     public Dictionary<string, double> Thresholds { get; init; } = [];
     public List<ReadingPlacement> Arrangement { get; init; } = [];

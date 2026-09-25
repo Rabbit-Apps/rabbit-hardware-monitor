@@ -29,6 +29,7 @@ public partial class App : Application
     /// </summary>
     public App()
     {
+        CpuPlacement.Initialize(DashboardPreferences.Load(out _).PreferECores);
         InitializeComponent();
         UnhandledException += (_, e) => {
             try

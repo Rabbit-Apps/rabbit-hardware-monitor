@@ -29,6 +29,20 @@ Diagnostics generates local reports that can include hardware identifiers and sy
 
 ### FPS statistics
 
+Current average and 1% low appear on the left, with the previous measured period on the right. Narrow panels stack the figures. Each measured reset replaces the previous figures; an empty reset preserves them. Changing game or render stream clears the history.
+
+### E-core preference
+
+Edit dashboard includes **Prefer E-cores (restart required)**, enabled by default. The monitor and its PresentMon helper select all available processors in the lower of two Windows efficiency classes using process-default CPU sets. On the tested i7-14700K this selects logical processors 16–27. Sensor threads may still temporarily use other processors for hardware reads; this is not a hard affinity guarantee or a demonstrated FPS improvement. No game affinity, priority, or power setting is changed.
+
+Unsupported topology falls back without guessing; existing conflicting CPU-set selections are retained. Disable the setting, save and restart to return to normal scheduling. Readback status is saved in `%LOCALAPPDATA%\HardwareMonitor\cpu-placement-monitor.json` and `cpu-placement-presentmon.json`; check their timestamps and PIDs. The helper log refreshes when FPS detection starts. Live gaming overhead remains to be measured.
+
+CPU-set selection/parser tests run with the regular suite. On a supported hybrid Windows machine, add `--native-cpu-placement` to run the process/helper assignment and restoration checks:
+
+    dotnet run --project FpsTests/FpsTests.csproj -c Release -- --native-cpu-placement
+
+### FPS calculation details
+
 Dashboard settings have independent switches for live FPS, average FPS and 1% low FPS. FPS detection controls the PresentMon helper; the display switches only control which figures are visible. Statistics can reset manually or every 30 seconds, 1 minute, 5 minutes or 10 minutes. Reset now takes effect immediately; other settings apply when saved.
 
 Live FPS uses the existing approximately one-second window. Average FPS is frame count divided by total frame duration since reset. The 1% low is the reciprocal of the mean duration of the slowest 1% of captured frame intervals (rounded up to a whole frame). These are application present timings, not displayed-frame timings, and may differ from other tools' definitions. Statistics start collecting after game selection and appear after at least 100 frames and two seconds of frame time.

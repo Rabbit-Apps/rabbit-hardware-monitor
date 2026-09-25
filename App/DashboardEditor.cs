@@ -76,6 +76,7 @@ public sealed partial class MainPage
     }
     async Task EditArrangement()
     {
+        var preferECores = new ToggleSwitch { Header = "Prefer E-cores (restart required)", IsOn = DashboardPreferences.Load(out _).PreferECores };
         var showFps = new CheckBox { Content = "Show FPS section", IsChecked = fpsSettings.Show };
         var detectFps = new ToggleSwitch { Header = "FPS detection", IsOn = fpsSettings.Enabled };
         var liveFps = new ToggleSwitch { Header = "Live FPS", IsOn = fpsSettings.ShowLive };
@@ -193,6 +194,8 @@ public sealed partial class MainPage
             list.Children.Add(row);
         }
         var content = new StackPanel { Spacing = 14 };
+        content.Children.Add(preferECores);
+        content.Children.Add(Text(CpuPlacement.Status + ". Applies to the monitor and FPS helper; sensor reads may temporarily use other cores.", 12, "#A7AFBD"));
         content.Children.Add(fpsControls);
         content.Children.Add(Text("Choose a column; arrows move readings within that column. Temperature warning °C: blank = off; clears 3 °C below.", 12, "#A7AFBD"));
         content.Children.Add(list);
@@ -204,7 +207,7 @@ public sealed partial class MainPage
         var nextVisibility = DashboardPreferences.MergeVisibility(visibility, initialVisibility, checks.ToDictionary(p => p.Key, p => p.Value.IsChecked == true));
         var nextThresholds = fields.Where(p => double.IsFinite(p.Value.Value)).ToDictionary(p => p.Key, p => Math.Round(p.Value.Value));
         var nextSources = sourceChoices.Where(p => p.Value.SelectedItem is SensorChoice c && c.Id.Length > 0).ToDictionary(p => p.Key, p => ((SensorChoice)p.Value.SelectedItem).Id);
-        var next = new DashboardPreferences { SensorOverrides = nextSources, Fps = nextFps, Visibility = nextVisibility, Thresholds = nextThresholds, Arrangement = draft };
+        var next = new DashboardPreferences { PreferECores = preferECores.IsOn, SensorOverrides = nextSources, Fps = nextFps, Visibility = nextVisibility, Thresholds = nextThresholds, Arrangement = draft };
         try
         {
             await Task.Run(() => SettingsStore.Write(DashboardPreferences.FilePath, next));

@@ -8,6 +8,8 @@ internal static class Program
 {
     [STAThread] static void Main(string[] args)
     {
+        if (args.Contains("--cpu-placement-child")) { Console.ReadLine(); using var p = System.Diagnostics.Process.GetCurrentProcess(); Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(CpuPlacement.Read(p.Handle))); return; }
+        CpuPlacementTests.Run(args.Contains("--native-cpu-placement"));
         if(args.Contains("--render")){
             var square=new System.Windows.Shapes.Rectangle{Width=150,Height=150,Fill=Brushes.CornflowerBlue,RenderTransform=new RotateTransform(),RenderTransformOrigin=new Point(.5,.5)};
             ((RotateTransform)square.RenderTransform).BeginAnimation(RotateTransform.AngleProperty,new DoubleAnimation(0,360,TimeSpan.FromSeconds(2)){RepeatBehavior=RepeatBehavior.Forever});
@@ -42,9 +44,28 @@ internal static class Program
         Check(statsTracker.Statistics(3,statsCandidate,456).Average == 50, "Brief pause retains session statistics");
         statsTracker.ResetSeconds=30;
         Check(statsTracker.Statistics(30,statsCandidate,456).Average == null, "Automatic interval reset");
+        Check(statsTracker.Statistics(30,statsCandidate,456).PreviousAverage == 50 && statsTracker.Statistics(30,statsCandidate,456).PreviousLow == 50, "Timer reset retains completed period");
         for(int i=0;i<100;i++) statsTracker.Accept("test.exe,456,A,20,Composed: Flip,1",31);
         Check(statsTracker.Statistics(31,statsCandidate,456).Average == 50, "Collect again after timer reset");
         Check(statsTracker.Statistics(32,statsCandidate with { Pid=457 },457).Average == null, "Changing process resets statistics");
+        Check(statsTracker.Statistics(32,statsCandidate with { Pid=457 },457).PreviousAverage == null, "Previous period cannot leak between processes");
+        var historyTracker = new FpsTracker();
+        historyTracker.Accept("Application,ProcessID,SwapChainAddress,MsBetweenPresents,PresentMode,msGPUActive",0);
+        historyTracker.Statistics(0,statsCandidate,456);
+        for(int i=0;i<990;i++) historyTracker.Accept("test.exe,456,A,10,Composed: Flip,1",1);
+        for(int i=0;i<10;i++) historyTracker.Accept("test.exe,456,A,100,Composed: Flip,1",1);
+        historyTracker.ResetStatistics(2);
+        var period = historyTracker.Statistics(2,statsCandidate,456);
+        Check(period.Average == null && Math.Abs(period.PreviousAverage!.Value-1000000d/10900)<.001 && period.PreviousLow == 10, "Manual reset snapshots both statistics before clearing");
+        historyTracker.ResetStatistics(3);
+        Check(historyTracker.Statistics(3,null,456).PreviousLow == 10, "Empty reset and paused game retain last usable period");
+        for(int i=0;i<100;i++) historyTracker.Accept("test.exe,456,A,20,Composed: Flip,1",4);
+        Check(historyTracker.Statistics(4,statsCandidate,456).PreviousLow == 10, "Current collection does not modify previous period");
+        historyTracker.ResetSeconds=30;
+        historyTracker.Accept("test.exe,456,A,100,Composed: Flip,1",33);
+        period=historyTracker.Statistics(33,statsCandidate,456);
+        Check(period.PreviousAverage == 50 && period.PreviousLow == 50 && period.Average == null, "Arrival-triggered timer replaces previous before adding boundary frame");
+        Check(historyTracker.Statistics(34,statsCandidate with { Chain="B" },456).PreviousLow == null, "Changing swap chain clears comparison history");
         var oldSettings = System.Text.Json.JsonSerializer.Deserialize<FpsSettings>("{\"Enabled\":true,\"Show\":true}")!;
         Check(oldSettings.ShowLive && oldSettings.ShowAverage && oldSettings.ShowLow && oldSettings.ResetSeconds==0, "Old FPS settings retain defaults");
         var choices = new FpsSettings(true,null,true,false,true,false,60);
