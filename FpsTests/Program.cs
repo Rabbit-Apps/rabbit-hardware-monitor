@@ -11,6 +11,16 @@ internal static class Program
         if (args.Contains("--cpu-placement-child")) { Console.ReadLine(); using var p = System.Diagnostics.Process.GetCurrentProcess(); Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(CpuPlacement.Read(p.Handle))); return; }
         CpuPlacementTests.Run(args.Contains("--native-cpu-placement"));
         HardeningTests.Run();
+        int csvArgument = Array.IndexOf(args, "--presentmon-csv");
+        if (csvArgument >= 0)
+        {
+            if (csvArgument + 1 >= args.Length) throw new ArgumentException("Missing CSV path");
+            var compatibility = new FpsTracker { ManualApplication = "FpsTests.exe" };
+            foreach (string line in System.IO.File.ReadLines(args[csvArgument + 1])) compatibility.Accept(line, 1);
+            if (!compatibility.HasHeader || !compatibility.Candidates(1).Any(c => c.Name == "FpsTests.exe" && double.IsFinite(c.Fps) && c.Fps > 0))
+                throw new Exception("PresentMon rendering capture did not produce a usable FPS candidate");
+            Console.WriteLine("PASS actual PresentMon CSV compatibility with Rabbit FPS tracker");
+        }
         if(args.Contains("--render")){
             var square=new System.Windows.Shapes.Rectangle{Width=150,Height=150,Fill=Brushes.CornflowerBlue,RenderTransform=new RotateTransform(),RenderTransformOrigin=new Point(.5,.5)};
             ((RotateTransform)square.RenderTransform).BeginAnimation(RotateTransform.AngleProperty,new DoubleAnimation(0,360,TimeSpan.FromSeconds(2)){RepeatBehavior=RepeatBehavior.Forever});

@@ -26,11 +26,10 @@ The modules and the separately installed driver are distinct components. The off
 
 ## Intel PresentMon
 
-PresentMon 2.5.1 provides frame-rate monitoring. Its MIT licence, copyright notice, third-party notices, and binary provenance are distributed in Tools/PresentMon alongside PresentMon.exe.
+PresentMon 2.6.0 provides frame-rate monitoring. Its MIT licence, copyright notice, third-party notices, and binary provenance are distributed in Tools/PresentMon alongside PresentMon.exe.
 
-Source: https://github.com/GameTechDev/PresentMon/tree/v2.5.1
+Source: https://github.com/GameTechDev/PresentMon/tree/v2.6.0
 
 ## Other dependencies
 
 The application also ships .NET and Windows App SDK runtime components and transitive dependencies. Their applicable upstream licence terms continue to apply. This notice is not a substitute for their licence texts.
-
