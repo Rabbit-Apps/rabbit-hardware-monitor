@@ -5,6 +5,8 @@ namespace HardwareMonitor;
 
 internal static class SettingsStore
 {
+    internal const int MaximumSettingsBytes = 1024 * 1024;
+    static readonly JsonSerializerOptions ReadOptions = new() { MaxDepth = 32 };
     public static string Folder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "HardwareMonitor");
 
     public static T? Read<T>(string path, out string? notice) where T : class
@@ -15,7 +17,12 @@ internal static class SettingsStore
             try
             {
                 using var stream = File.OpenRead(candidate);
-                var value = JsonSerializer.Deserialize<T>(stream) ?? throw new JsonException("Empty settings document.");
+                if (stream.Length > MaximumSettingsBytes) throw new JsonException("Settings document is too large.");
+                // Read a bounded snapshot even if another process grows the source file.
+                var bytes = new byte[(int)stream.Length];
+                stream.ReadExactly(bytes);
+                int start = bytes.AsSpan().StartsWith(new byte[] { 0xEF, 0xBB, 0xBF }) ? 3 : 0;
+                var value = JsonSerializer.Deserialize<T>(bytes.AsSpan(start), ReadOptions) ?? throw new JsonException("Empty settings document.");
                 if (candidate != path)
                     notice = "Settings recovered from backup";
                 return value;

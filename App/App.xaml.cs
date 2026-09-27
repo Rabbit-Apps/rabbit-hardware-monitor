@@ -22,6 +22,7 @@ namespace HardwareMonitor;
 public partial class App : Application
 {
     private Window? _window;
+    private System.Threading.Mutex? instanceMutex;
     
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
@@ -29,7 +30,6 @@ public partial class App : Application
     /// </summary>
     public App()
     {
-        CpuPlacement.Initialize(DashboardPreferences.Load(out _).PreferECores);
         InitializeComponent();
         UnhandledException += (_, e) => {
             try
@@ -49,7 +49,18 @@ public partial class App : Application
     /// <param name="args">Details about the launch request and process.</param>
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
+        string account = System.Security.Principal.WindowsIdentity.GetCurrent().User!.Value;
+        instanceMutex = new System.Threading.Mutex(true, "Local\\RabbitHardwareMonitor-" + account, out bool firstInstance);
+        if (!firstInstance)
+        {
+            instanceMutex.Dispose();
+            instanceMutex = null;
+            Exit();
+            return;
+        }
+        CpuPlacement.Initialize(DashboardPreferences.Load(out _).PreferECores);
         _window = new MainWindow();
+        _window.Closed += (_, _) => { instanceMutex?.ReleaseMutex(); instanceMutex?.Dispose(); instanceMutex = null; };
         _window.Activate();
         ((MainWindow)_window).RestorePlacement();
     }

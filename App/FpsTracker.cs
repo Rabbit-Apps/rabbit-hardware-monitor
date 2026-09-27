@@ -92,6 +92,7 @@ internal sealed class FpsTracker
     }
     public void Accept(string line, double now)
     {
+        if (line.Length > FpsStreamReader.MaximumLineLength) return;
         // Process IDs and executable names precede the expensive timing columns in the
         // pinned CSV format. Ignore desktop traffic unless explicitly selected manually.
         if (HasHeader && !line.StartsWith('"'))
@@ -108,6 +109,12 @@ internal sealed class FpsTracker
         var fields = Csv(line);
         if (fields.Contains("Application") && fields.Contains("ProcessID"))
         {
+            if (fields.Distinct(StringComparer.OrdinalIgnoreCase).Count() != fields.Length)
+            {
+                header.Clear();
+                HasHeader = false;
+                return;
+            }
             header = fields.Select((name, index) => (name, index)).ToDictionary(p => p.name, p => p.index, StringComparer.OrdinalIgnoreCase);
             HasHeader = header.ContainsKey("MsBetweenPresents") && header.ContainsKey("SwapChainAddress");
             return;
@@ -115,7 +122,7 @@ internal sealed class FpsTracker
         if (!HasHeader)
             return;
         string Get(string key) => header.TryGetValue(key, out int index) && index < fields.Length ? fields[index] : "";
-        if (!int.TryParse(Get("ProcessID"), out int pid) || pid == Environment.ProcessId)
+        if (!int.TryParse(Get("ProcessID"), out int pid) || pid <= 0 || pid == Environment.ProcessId)
             return;
         if (!double.TryParse(Get("MsBetweenPresents"), NumberStyles.Float, CultureInfo.InvariantCulture, out double ms) || !double.IsFinite(ms) || ms <= 0)
             return;

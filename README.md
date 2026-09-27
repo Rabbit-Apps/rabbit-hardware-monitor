@@ -9,6 +9,8 @@ Tools like LibreHardwareMonitor and HWMonitor are fantastic for detailed hardwar
 The inspiration came after I switched to an NVIDIA GPU and couldn't find a replacement that gave me the same monitoring dashboard experience I enjoyed in AMD Adrenalin. Rabbit is my take on that experience: the key readings, clearly presented and easy to keep an eye on while gaming.
 
 ## Run
+Version 0.2.0 also includes an x64 Setup installer. It installs into Program Files and offers **Start at sign-in** for the administrator account running Setup. Startup uses a delayed interactive scheduled task, not a system service. If you supply another administrator's credentials, the startup option belongs to that account. Rerun Setup to change the option, or disable the named task in Task Scheduler. Uninstall removes the task and retains your dashboard settings. Close portable copies before installing. See [security notes](SECURITY.md) and [release validation](RELEASE-VALIDATION.md).
+
 Download the Windows x64 portable ZIP from [Releases](https://github.com/Rabbit-Apps/rabbit-hardware-monitor/releases).
 
 Extract the entire portable ZIP and double-click HardwareMonitor.exe. The app automatically requests administrator access; approve the Windows permission prompt to continue. Install the official PawnIO driver separately from https://pawnio.eu/. Visual Studio is not needed to run the portable build. Settings remain in the per-user HardwareMonitor local application-data folder.
@@ -21,6 +23,12 @@ Use Windows, .NET 10 SDK and the Visual Studio Windows/WinUI build tools. From t
     ./package-portable.ps1 -PublishDirectory dist/Rabbit -ZipPath dist/Rabbit.zip
 
 The local package feed contains the exact privacy-rebuilt library. Directory.Build.props maps build paths and disables release debug symbols. Runtime privacy scans should be repeated after rebuilding on another machine.
+
+To build the installer, install Inno Setup 7.1 or later from its official source, then run:
+
+    ./Installer/Build.ps1 -Compiler 'C:\path\to\Inno Setup 7\ISCC.exe'
+
+The script runs tests, publishes the self-contained app, and writes Setup plus SHA-256 to `dist/Installer`. Build artifacts are excluded from Git. Installer startup integration must also be validated on Windows with administrator access; unit tests alone do not verify it.
 
 ## Settings and limitations
 Edit dashboard controls visibility, sensor mapping, order, warnings and FPS detection. Automatic GPU selection prefers a known dedicated adapter. Sensor availability varies with firmware, drivers and hardware; verify fan mappings against your own system. FPS detection is heuristic and supports a manual application selection.

@@ -6,6 +6,9 @@
     <RootNamespace>HardwareMonitor</RootNamespace>
     <AssemblyTitle>Rabbit Hardware Monitor</AssemblyTitle>
     <Product>Rabbit Hardware Monitor</Product>
+    <Version>0.2.0</Version>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
     <Company>Rabbit Apps</Company>
     <Description>Compact hardware monitoring dashboard by Rabbit Apps.</Description>
     <Copyright>Copyright © 2026 Rabbit Apps</Copyright>

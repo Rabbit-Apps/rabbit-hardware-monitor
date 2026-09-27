@@ -109,7 +109,12 @@ internal static class CpuPlacement
             string message = "E-core preference unavailable: " + e.Message;
             if (changed && original != null)
             {
-                try { Set(process.Handle, original); }
+                try
+                {
+                    Set(process.Handle, original);
+                    if (!Read(process.Handle).Order().SequenceEqual(original.Order()))
+                        throw new InvalidDataException("Original CPU sets did not read back correctly.");
+                }
                 catch (Exception restore) { message += "; restore failed: " + restore.Message + ". Restart the monitor."; }
             }
             return new(false, message, [], []);

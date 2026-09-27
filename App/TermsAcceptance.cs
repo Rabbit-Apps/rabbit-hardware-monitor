@@ -62,7 +62,7 @@ public sealed partial class MainWindow
             actions.Children.Add(agree); actions.Children.Add(accept);
         }
         catch (Exception error) when (error is IOException or UnauthorizedAccessException)
-        { message.Text = "The licence files could not be loaded. Extract the complete app ZIP into a new folder and reopen it."; }
+        { message.Text = "The licence files could not be loaded. Reinstall Rabbit or extract the complete portable ZIP into a new folder."; }
         actions.Children.Add(exit);
     }
 }
