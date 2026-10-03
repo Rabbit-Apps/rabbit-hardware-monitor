@@ -1,5 +1,11 @@
 # Changes
 
+## 0.2.1 — 3 October 2026
+
+- Bundled Intel-signed PresentMon Console 2.6.0 in the Windows installer.
+- Retained existing FPS metrics, settings and sign-in startup behavior.
+- Added an optional compatibility test for CSV captured by the rendering test.
+
 ## 0.2.0 — 27 September 2026
 
 - Added a Windows x64 installer, Start menu entry, uninstall entry, optional desktop shortcut, and optional startup at sign-in for the installing administrator account.

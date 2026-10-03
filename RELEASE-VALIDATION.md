@@ -16,3 +16,11 @@ Validated on Windows 11 x64 with an Intel i7-14700K and NVIDIA RTX 5080.
 Not verified: actual reboot/sign-out/sign-in trigger execution, all supported Windows versions/accounts, malicious reparse-point or hostile dependency attacks, exhaustive driver/native-component vulnerability analysis, or comparative in-game overhead. The task's manual launch was tested instead of interrupting the user's session. The build is unsigned, and Defender was inactive, so no antivirus clean-scan assertion is made.
 
 The E-core preference selects all available E-cores on this machine; it does not guarantee exclusive residency or an FPS improvement. CPU-specific sensor reads may temporarily use other processors. The installer does not install, update or uninstall the PawnIO driver.
+
+## 0.2.1 installer — 3 October 2026
+
+- Built from a fresh publish directory with PresentMon Console 2.6.0; official helper SHA-256 B2A706BC6AD475749E3B7E3409263AA1E6906D45BDCF993F6DBC0F660188F1AF.
+- All 61 FPS/settings/sensor assertions and hardening/topology checks passed.
+- Targeted privacy scan checked 3,077 files/archive entries across published payload and tracked source, including ZIP/NuGet contents, for known personal markers in UTF-8 and UTF-16. No matches found. Payload excludes capture files, settings, debug symbols and logs. This is not an exhaustive privacy guarantee; public GitHub attribution and generic test hardware models remain documented.
+- Installer compiled successfully. The earlier 0.2.0 install/startup/uninstall lifecycle checks were not repeated for this build. PresentMon 2.6 live CSV compatibility and user gameplay confirmation were completed for the preceding patch.
+- Installer remains unsigned; no game performance improvement is claimed.

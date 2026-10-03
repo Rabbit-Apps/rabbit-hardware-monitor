@@ -1,4 +1,4 @@
-Rabbit Hardware Monitor 0.2.0
+Rabbit Hardware Monitor 0.2.1
 
 Installs into Program Files with Start menu and uninstall entries.
 Close any portable Rabbit copy before installing or upgrading.

@@ -10,7 +10,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Publish failed.' }
     & $Compiler /Q (Join-Path $PSScriptRoot 'Rabbit.iss')
     if ($LASTEXITCODE -ne 0) { throw 'Installer compilation failed.' }
-    $installer = Join-Path $repo 'dist/Installer/RabbitHardwareMonitor-0.2.0-Setup.exe'
+    $installer = Join-Path $repo 'dist/Installer/RabbitHardwareMonitor-0.2.1-Setup.exe'
     $digest = (Get-FileHash -LiteralPath $installer -Algorithm SHA256).Hash
     "$digest  $([IO.Path]::GetFileName($installer))" | Set-Content -LiteralPath ($installer + '.sha256.txt')
     Write-Output $installer
